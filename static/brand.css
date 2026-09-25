@@ -1,0 +1,215 @@
+/* Brand overlay for albertmra (Albert Muratbaev) — loaded after the main Tailwind bundle,
+   so these rules win the cascade over the compiled utility classes. */
+
+/* Fonts: the main bundle expects "Be Vietnam Pro", but the compiled CSS never loads it.
+   Load the self-hosted copies (s/ directory) here so headings and body text keep the
+   original look on GitHub Pages and file://, no Google request needed. */
+@font-face {
+  font-family: "Be Vietnam Pro";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(../s/bevietnampro/v12/QdVMSTAyLFyeg_IDWvOJmVES_HScJ18y.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Be Vietnam Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../s/bevietnampro/v12/QdVPSTAyLFyeg_IDWvOJmVES_Eww.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Be Vietnam Pro";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../s/bevietnampro/v12/QdVMSTAyLFyeg_IDWvOJmVES_HTEJl8y.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Be Vietnam Pro";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../s/bevietnampro/v12/QdVMSTAyLFyeg_IDWvOJmVES_HSMIF8y.ttf) format("truetype");
+}
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../s/dmmono/v16/aFTU7PB1QTsUX8KYhh0.ttf) format("truetype");
+}
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../s/dmmono/v16/aFTR7PB1QTsUX8KYvumzIYQ.ttf) format("truetype");
+}
+
+/* Infinite 24/7 logo animation: a gentle bob + tilt with a soft cyan glow pulse.
+   Applied to every header logo (desktop icon, mobile full logo, footer "Built with"). */
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(-3deg); }
+}
+@keyframes logoGlow {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(0, 199, 255, 0)); }
+  50% { filter: drop-shadow(0 0 6px rgba(0, 199, 255, 0.55)); }
+}
+img[src$="logo_no_text.svg"],
+img[src$="logo_full.svg"],
+footer img[src$="nextjs-original-wordmark.svg"],
+footer img[src$="Tailwind_CSS_Logo.svg"] {
+  animation: logoFloat 3.6s ease-in-out infinite, logoGlow 3.6s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+/* Per-letter float for the wordmark, staggered so the letters wave.
+   Hover states from the template (color + lift) keep working on top. */
+@keyframes letterFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+nav span.font-black > span {
+  display: inline-block;
+  animation: letterFloat 2.6s ease-in-out infinite;
+}
+nav span.font-black > span:nth-child(1) { animation-delay: 0s; }
+nav span.font-black > span:nth-child(2) { animation-delay: 0.1s; }
+nav span.font-black > span:nth-child(3) { animation-delay: 0.2s; }
+nav span.font-black > span:nth-child(4) { animation-delay: 0.3s; }
+nav span.font-black > span:nth-child(5) { animation-delay: 0.4s; }
+nav span.font-black > span:nth-child(6) { animation-delay: 0.5s; }
+nav span.font-black > span:nth-child(7) { animation-delay: 0.6s; }
+nav span.font-black > span:nth-child(8) { animation-delay: 0.7s; }
+nav span.font-black > span:nth-child(9) { animation-delay: 0.8s; }
+nav span.font-black > span:nth-child(10) { animation-delay: 0.9s; }
+
+/* Infinite float for the devicon skill icons. */
+@keyframes skillFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.grid .w-10 img {
+  animation: skillFloat 4s ease-in-out infinite;
+}
+
+/* The GitHub mark ships dark; invert it so it reads on the dark background. */
+.grid .w-10 img[src$="github-original.svg"] {
+  filter: invert(1);
+}
+
+/* Desktop wordmark: keep the letters together on narrow screens so the float
+   animation never turns into an accordion. */
+nav span.font-black {
+  white-space: nowrap;
+}
+nav span.font-black > span {
+  flex-shrink: 0;
+}
+
+/* Mobile burger + fullscreen overlay menu (visible below the 640px sm breakpoint). */
+.burger-btn {
+  display: none;
+  background: 0 0;
+  border: 0;
+  color: #f3f4f6;
+  cursor: pointer;
+  position: relative;
+  z-index: 102;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+@media (max-width: 639.98px) {
+  .burger-btn {
+    display: block;
+  }
+}
+.burger-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+.burger-btn .icon-close {
+  opacity: 0;
+}
+.burger-btn.open .icon-open {
+  opacity: 0;
+}
+.burger-btn.open .icon-close {
+  opacity: 1;
+}
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgb(0 10 31 / 0.98);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.3s ease;
+}
+.mobile-menu a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease, color 0.2s ease;
+}
+.mobile-menu.open a {
+  opacity: 0.9;
+  transform: none;
+}
+.mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+.mobile-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+.mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+.mobile-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+.mobile-menu.open a:hover,
+.mobile-menu.open a:focus-visible {
+  color: #00c7ff;
+  opacity: 1;
+}
+
+/* 24/7 pulse for the featured project cards (glow only — hover lift keeps working). */
+@keyframes cardGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(0, 199, 255, 0); }
+  50% { box-shadow: 0 0 22px rgba(0, 199, 255, 0.28); }
+}
+.card-live {
+  border-color: rgba(0, 199, 255, 0.6);
+  animation: cardGlow 4s ease-in-out infinite;
+}
+
+/* Keep the CTA doodle inside its section so it never bleeds into the footer. */
+.cta-section {
+  overflow: hidden;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  img[src$="logo_no_text.svg"],
+  img[src$="logo_full.svg"],
+  nav span.font-black > span,
+  .grid .w-10 img,
+  .card-live,
+  footer img[src$="nextjs-original-wordmark.svg"],
+  footer img[src$="Tailwind_CSS_Logo.svg"] {
+    animation: none;
+  }
+}

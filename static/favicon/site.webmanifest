@@ -1,0 +1,21 @@
+{
+  "name": "Albert Muratbaev — Full-stack & Mobile Developer",
+  "short_name": "albertmra",
+  "icons": [
+    {
+      "src": "../logos/logo_no_text.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "../logos/logo_no_text.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#000a1f",
+  "background_color": "#000a1f",
+  "display": "standalone"
+}
