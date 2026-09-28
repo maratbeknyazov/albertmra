@@ -8,6 +8,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
   <link rel="manifest" href="static/favicon/site.webmanifest">
+  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)" href="static/favicon/favicon-red.svg" id="favLink1">
+  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: light)" href="static/favicon/favicon-blue.svg" id="favLink2">
   <meta name="title" content="Albert Muratbaev — Full-stack &amp; Mobile Developer">
   <meta name="description" content="I'm Albert — a full-stack and mobile developer turning complex product flows into clear, reliable systems with Python, Django, FastAPI, React Native, and Flutter.">
   <meta property="og:type" content="website">
@@ -16,6 +18,9 @@
   <meta property="twitter:card" content="summary">
   <meta property="twitter:title" content="Albert Muratbaev — Full-stack &amp; Mobile Developer">
   <meta property="twitter:description" content="I'm Albert — a full-stack and mobile developer turning complex product flows into clear, reliable systems with Python, Django, FastAPI, React Native, and Flutter.">
+  <link rel="icon" type="image/svg+xml" href="static/favicon/favicon-red.svg" id="themeFavicon">
+  <link rel="preload" as="image" href="static/favicon/favicon-blue.svg">
+  <meta name="theme-color" id="metaThemeColor" content="#0a0a0a">
   <link rel="preload" as="image" href="static/logos/logo_no_text.svg">
   <link rel="preload" as="image" href="static/doodles/hero/html.svg">
   <link rel="preload" as="image" href="static/doodles/hero/coder.svg">
@@ -26,6 +31,21 @@
   <link rel="preload" as="image" href="static/projects/last-mile-delivery.svg">
   <link rel="stylesheet" href="_next/static/chunks/e24ef282d7aafded.css">
   <link rel="stylesheet" href="static/brand.css">
+  <script>
+    /* Theme boot before first paint: applies html.theme-red, syncs favicon and
+       meta theme-color. Default: Deadpool Red. All paths are relative so it
+       works on GitHub Pages project sites. */
+    (function () {
+      var theme = 'red';
+      try { if (localStorage.getItem('theme') === 'blue') theme = 'blue'; } catch (e) {}
+      var root = document.documentElement;
+      if (theme === 'red') root.classList.add('theme-red');
+      var fav = document.getElementById('themeFavicon');
+      if (fav) fav.href = 'static/favicon/favicon-' + (theme === 'red' ? 'red' : 'blue') + '.svg';
+      var meta = document.getElementById('metaThemeColor');
+      if (meta) meta.setAttribute('content', theme === 'red' ? '#0a0a0a' : '#000a1f');
+    })();
+  </script>
 </head>
 <body>
   <div class="w-full m-auto flex flex-col items-center justify-center min-h-screen opening-box-animate-paddin text-white overflow-hidden md:overflow-visible" style="max-width:1200px">
@@ -37,15 +57,19 @@
           <li class="list-none font-bold text-lg cursor-pointer">
             <a href="index.html">
               <span class="font-black text-xl flex items-center">
-                <img class="mr-2 transform hover:rotate-360 hover:scale-75 transition-transform duration-500" src="static/logos/logo_no_text.svg" width="60" alt="albertmra logo">
+                <span class="logo3d-wrap"><img class="mr-2 logo3d transform hover:rotate-360 hover:scale-75 transition-transform duration-500" src="static/logos/logo_no_text.svg" width="60" alt="albertmra logo"></span>
                 <span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">l</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">b</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">e</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">t</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">m</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span>
               </span>
             </a>
           </li>
           <ul class="flex items-center space-x-10">
             <li class="list-none text-white opacity-100"><a href="index.html">Home</a></li>
-            <li class="list-none text-white opacity-40 hover:opacity-100 transition-opacity"><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">GitHub</a></li>
             <li class="list-none text-white opacity-40 hover:opacity-100 transition-opacity"><a href="projects.html">Projects</a></li>
+            <li class="list-none text-white opacity-40 hover:opacity-100 transition-opacity"><a href="cv.html">CV</a></li>
+            <li class="list-none text-white opacity-40 hover:opacity-100 transition-opacity"><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">GitHub</a></li>
+            <li class="list-none">
+              <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Theme: Deadpool Red — activate Original Blue" title="Switch theme"><span class="tt-face tt-face-red" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 24C14 12 50 12 56 24C57 26 57 38 56 40C50 52 14 52 8 40C7 38 7 26 8 24Z" fill="#e50914"/><circle cx="24" cy="34" r="5" fill="#0a0a0a"/><circle cx="40" cy="34" r="5" fill="#0a0a0a"/><path d="M14 22C22 15 42 15 50 22" stroke="#c29b38" stroke-width="4" stroke-linecap="round"/></svg></span><span class="tt-face tt-face-blue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 6L56 14V32C56 47 45 55 32 60C19 55 8 47 8 32V14Z" fill="#00c7ff"/><circle cx="32" cy="33" r="7" fill="#000a1f"/></svg></span><span class="tt-dot" aria-hidden="true"></span><span class="tt-label">Red</span></button>
+            </li>
           </ul>
         </nav>
       </div>
@@ -57,20 +81,24 @@
             <li class="list-none font-bold text-lg">
               <a href="index.html">
                 <span class="font-black text-xl flex items-center">
-                  <img class="mr-2" src="static/logos/logo_no_text.svg" width="44" alt="albertmra logo">
+                  <span class="logo3d-wrap"><img class="mr-2 logo3d" src="static/logos/logo_no_text.svg" width="44" alt="albertmra logo"></span>
                   <span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">l</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">b</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">e</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">t</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">m</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span>
                 </span>
               </a>
             </li>
-            <button class="burger-btn" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <div class="flex items-center" style="gap:14px;z-index:102">
+              <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Theme: Deadpool Red — activate Original Blue" title="Switch theme"><span class="tt-face tt-face-red" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 24C14 12 50 12 56 24C57 26 57 38 56 40C50 52 14 52 8 40C7 38 7 26 8 24Z" fill="#e50914"/><circle cx="24" cy="34" r="5" fill="#0a0a0a"/><circle cx="40" cy="34" r="5" fill="#0a0a0a"/><path d="M14 22C22 15 42 15 50 22" stroke="#c29b38" stroke-width="4" stroke-linecap="round"/></svg></span><span class="tt-face tt-face-blue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 6L56 14V32C56 47 45 55 32 60C19 55 8 47 8 32V14Z" fill="#00c7ff"/><circle cx="32" cy="33" r="7" fill="#000a1f"/></svg></span><span class="tt-dot" aria-hidden="true"></span><span class="tt-label">Red</span></button>
+              <button class="burger-btn" aria-label="Toggle menu" aria-expanded="false" type="button">
               <svg class="burger-icon icon-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h18"/><path d="M3 12h18"/><path d="M3 17h18"/></svg>
               <svg class="burger-icon icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
             </button>
+            </div>
           </div>
         </nav>
         <div class="mobile-menu" id="mobileMenu">
           <a href="index.html">Home</a>
           <a href="projects.html">Projects</a>
+          <a href="cv.html">CV</a>
           <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">GitHub</a>
           <a href="mailto:maratbeknyazov@gmail.com">Email</a>
         </div>
@@ -95,12 +123,70 @@
             }
           });
         })();
+
+        /* Theme switcher: toggles html.theme-red, persists to localStorage["theme"],
+           and syncs all toggle buttons (desktop + mobile), the favicon and the
+           meta theme-color. The .theme-anim class enables the cross-fade
+           transitions only while switching. */
+        (function () {
+          var btns = document.querySelectorAll('.theme-toggle');
+          function apply(theme) {
+            var isRed = theme !== 'blue';
+            document.documentElement.classList.toggle('theme-red', isRed);
+            var fav = document.getElementById('themeFavicon');
+            if (fav) fav.href = 'static/favicon/favicon-' + (isRed ? 'red' : 'blue') + '.svg';
+            var meta = document.getElementById('metaThemeColor');
+            if (meta) meta.setAttribute('content', isRed ? '#0a0a0a' : '#000a1f');
+            btns.forEach(function (btn) {
+              btn.classList.toggle('is-red', isRed);
+              btn.classList.toggle('is-blue', !isRed);
+              btn.setAttribute('aria-checked', isRed ? 'true' : 'false');
+              btn.setAttribute('aria-label', isRed ? 'Theme: Deadpool Red — activate Original Blue' : 'Theme: Original Blue — activate Deadpool Red');
+              var label = btn.querySelector('.tt-label');
+              if (label) label.textContent = isRed ? 'Red' : 'Blue';
+            });
+          }
+          apply(document.documentElement.classList.contains('theme-red') ? 'red' : 'blue');
+          btns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              var next = document.documentElement.classList.contains('theme-red') ? 'blue' : 'red';
+              document.documentElement.classList.add('theme-anim');
+              apply(next);
+              try { localStorage.setItem('theme', next); } catch (e) {}
+              window.setTimeout(function () { document.documentElement.classList.remove('theme-anim'); }, 600);
+            });
+          });
+        })();
+
+        /* 3D tilt for project cards: desktop pointers only. The card leans
+           toward the cursor (max 7deg) and springs back on leave. */
+        (function () {
+          function initTilt() {
+          var cards = document.querySelectorAll('.card-live');
+          cards.forEach(function (card) {
+            card.classList.add('tilt3d', 'is-idle');
+            card.addEventListener('pointermove', function (e) {
+              var r = card.getBoundingClientRect();
+              var rx = ((e.clientY - r.top) / r.height - 0.5) * -10;
+              var ry = ((e.clientX - r.left) / r.width - 0.5) * 10;
+              card.classList.remove('is-idle');
+              card.style.transform = 'perspective(800px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+            });
+            card.addEventListener('pointerleave', function () {
+              card.classList.add('is-idle');
+              card.style.transform = '';
+            });
+          });
+          }
+          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTilt);
+          else initTilt();
+        })();
       </script>
 
       <!-- Hero -->
       <div class="relative heroElem w-full pt-20 pb-40 m-auto flex justify-center text-center flex-col items-center z-1" style="max-width:1200px">
         <p class="text-xl mb-5">Hey, I&#x27;m Albert.</p>
-        <h1 class="heroTitle inline-block max-w-2xl lg:max-w-4xl w-auto relative text-5xl md:text-6xl lg:text-7xl tracking-tighter mb-5 font-bold heroShinyBg">I enjoy <span class="heroShiny1 text-fun-pink">building</span> and <span class="heroShiny2 text-fun-pink">shipping</span> for the web and mobile.<img class="sqD squiggle-hero-html w-16 top-[-90px] right-[5%] sm:top-[-90px] sm:right-[170px]" style="animation-delay:0.1s" src="static/doodles/hero/html.svg" alt=""><img class="sqD squiggle-hero-nextjs hidden top-[75px] right-0 w-11" style="animation-delay:0.2s" src="static/doodles/hero/nextjs.svg" alt=""><img class="sqD hidden sm:block bottom-[-340px] left-[-180px]" style="animation-delay:0.4s" src="static/doodles/hero/coder.svg" alt=""><img class="sqD hidden sm:block left-[100px] lg:left-[160px] bottom-[-150px]" style="animation-delay:0.5s" src="static/doodles/hero/js.svg" alt=""><img class="sqD bottom-[-320px] right-[65%] sm:right-[45%]" style="animation-delay:0.6s" src="static/doodles/hero/dino.svg" alt=""><img class="sqD right-[-60px] sm:right-0 bottom-[-180px] lg:[5%]" style="animation-delay:0.7s" src="static/doodles/hero/paintbrush.svg" alt=""><img class="sqD squiggle-hero-pop1 hidden sm:block sm:top-[-130px] sm:left-[15%] lg:top-[-130px] lg:left-[120px]" src="static/doodles/hero/pop1.svg" alt=""><img class="sqD left-[-35px] bottom-[-85px] sm:bottom-[-100px] sm:left-5 opacity-40" style="animation-delay:0.9s" src="static/doodles/hero/code.svg" alt=""></h1>
+        <h1 class="heroTitle inline-block max-w-2xl lg:max-w-4xl w-auto relative text-5xl md:text-6xl lg:text-7xl tracking-tighter mb-5 font-bold heroShinyBg">I enjoy <span class="heroShiny1 text-fun-pink" data-text="building">building</span> and <span class="heroShiny2 text-fun-pink" data-text="shipping">shipping</span> for the web and mobile.<img class="sqD squiggle-hero-html w-16 top-[-90px] right-[5%] sm:top-[-90px] sm:right-[170px]" style="animation-delay:0.1s" src="static/doodles/hero/html.svg" alt=""><img class="sqD squiggle-hero-nextjs hidden top-[75px] right-0 w-11" style="animation-delay:0.2s" src="static/doodles/hero/nextjs.svg" alt=""><img class="sqD hidden sm:block bottom-[-340px] left-[-180px]" style="animation-delay:0.4s" src="static/doodles/hero/coder.svg" alt=""><img class="sqD hidden sm:block left-[100px] lg:left-[160px] bottom-[-150px]" style="animation-delay:0.5s" src="static/doodles/hero/js.svg" alt=""><img class="sqD bottom-[-320px] right-[65%] sm:right-[45%]" style="animation-delay:0.6s" src="static/doodles/hero/dino.svg" alt=""><img class="sqD right-[-60px] sm:right-0 bottom-[-180px] lg:[5%]" style="animation-delay:0.7s" src="static/doodles/hero/paintbrush.svg" alt=""><img class="sqD squiggle-hero-pop1 hidden sm:block sm:top-[-130px] sm:left-[15%] lg:top-[-130px] lg:left-[120px]" src="static/doodles/hero/pop1.svg" alt=""><img class="sqD left-[-35px] bottom-[-85px] sm:bottom-[-100px] sm:left-5 opacity-40" style="animation-delay:0.9s" src="static/doodles/hero/code.svg" alt=""></h1>
         <p class="text-fun-gray text-lg max-w-xl mx-auto mb-10">Full-stack &amp; mobile developer turning complex product flows into clear, reliable systems — REST APIs, cross-platform apps, realtime communication, and geospatial features.</p>
         <a href="#learnmore"><div class="cursor-pointer font-bold whitespace-nowrap px-10 py-4 text-fun-white border-2 text-xl rounded-full border-fun-white bg-bg hover:bg-fun-pink hover:text-white hover:border-fun-pink transition-colors">Tell me more</div></a>
       </div>
@@ -184,25 +270,57 @@
         <!-- Toolbelt -->
         <div class="flex flex-col md:flex-row justify-between relative">
           <h2 class="relative text-3xl w-full text-center md:text-left font-bold md:max-w-lg mb-10 md:mr-10 md:mb-0 md:w-max mr-0">I got the experience.<br>Here is my toolbelt for success.<img class="sqD bottom-[-80px] left-[-50px] lg:bottom-[-50px] lg:left-[-35px] z-[-10]" src="static/doodles/skills/laptop.svg" alt=""><img class="sqD hidden md:block top-[140px] right-0 lg:top-[105px]" src="static/doodles/skills/coding.svg" alt=""><img class="sqD hidden md:block top-[200px] right-[50px] lg:top-[170px] lg:right-[50px]" src="static/doodles/skills/youtube.svg" alt=""><img class="sqD top-[-15px] right-[-15px]" src="static/doodles/skills/fillStar.svg" alt=""></h2>
-          <div class="relative max-w-lg w-full mx-auto md:mx-none grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
-            <div title="Python" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Python</p></div>
-            <div title="Django" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Django</p></div>
-            <div title="FastAPI" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">FastAPI</p></div>
-            <div title="TypeScript" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">TypeScript</p></div>
-            <div title="JavaScript" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">JavaScript</p></div>
-            <div title="React" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/react/react-original.svg" alt="React"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">React</p></div>
-            <div title="React Native" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/reactnative/reactnative-original.svg" alt="React Native"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">React Native</p></div>
-            <div title="Flutter" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Flutter</p></div>
-            <div title="PostgreSQL" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">PostgreSQL</p></div>
-            <div title="Redis" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Redis</p></div>
-            <div title="Docker" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Docker</p></div>
-            <div title="GraphQL" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/graphql/graphql-plain.svg" alt="GraphQL"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">GraphQL</p></div>
-            <div title="Git" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Git</p></div>
-            <div title="GitHub" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">GitHub</p></div>
-            <div title="Cypress" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/cypress/cypress-original.svg" alt="Cypress"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Cypress</p></div>
-            <div title="Figma" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Figma</p></div>
-            <div title="NextJS" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" style="filter:invert(1)" alt="NextJS"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">NextJS</p></div>
-            <div title="TailwindCSS" class="w-10 mx-auto flex items-center flex-col justify-center"><img src="wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="TailwindCSS"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">TailwindCSS</p></div>
+          <div class="relative max-w-lg w-full mx-auto md:mx-none">
+            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6">Languages</p>
+            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
+            <!-- Languages -->
+            <div class="tip" data-tip="Основной язык" title="Python"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Python</p></div></div>
+            <div class="tip" data-tip="Основной стек" title="TypeScript"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">TypeScript</p></div></div>
+            <div class="tip" data-tip="Frontend и скрипты" title="JavaScript"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">JavaScript</p></div></div>
+            <div class="tip" data-tip="Flutter-приложения" title="Dart"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Dart</p></div></div>
+            <div class="tip" data-tip="Разметка" title="HTML"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">HTML</p></div></div>
+            <div class="tip" data-tip="Стилизация" title="CSS"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">CSS</p></div></div>
+            </div>
+            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6 mt-12">Backend &amp; API</p>
+            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
+            <!-- Backend & API -->
+            <div class="tip" data-tip="Основной фреймворк" title="Django"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Django</p></div></div>
+            <div class="tip" data-tip="Асинхронные API" title="FastAPI"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">FastAPI</p></div></div>
+            <div class="tip" data-tip="Фоновые задачи" title="Celery"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/celery/celery-original.svg" alt="Celery"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Celery</p></div></div>
+            <div class="tip" data-tip="Кэш и Pub/Sub" title="Redis"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Redis</p></div></div>
+            <div class="tip" data-tip="PostGIS, геозапросы" title="PostgreSQL"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">PostgreSQL</p></div></div>
+            <div class="tip" data-tip="Локальные БД" title="SQLite"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">SQLite</p></div></div>
+            </div>
+            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6 mt-12">Mobile &amp; Web</p>
+            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
+            <!-- Mobile & Web -->
+            <div class="tip" data-tip="Кроссплатформенные приложения" title="React Native"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/reactnative/reactnative-original.svg" alt="React Native"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">React Native</p></div></div>
+            <div class="tip" data-tip="Мобильная сборка и роутинг" title="Expo"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/expo/expo-original.svg" alt="Expo"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Expo</p></div></div>
+            <div class="tip" data-tip="BLoC, Clean Architecture" title="Flutter"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Flutter</p></div></div>
+            <div class="tip" data-tip="Дашборды" title="React"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/react/react-original.svg" alt="React"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">React</p></div></div>
+            <div class="tip" data-tip="Сборка фронтенда" title="Vite"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/vite/vite-original.svg" alt="Vite"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Vite</p></div></div>
+            <div class="tip" data-tip="Утилити-стили" title="Tailwind CSS"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Tailwind</p></div></div>
+            </div>
+            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6 mt-12">Infrastructure</p>
+            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
+            <!-- Infrastructure -->
+            <div class="tip" data-tip="Контейнеры и Compose" title="Docker"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Docker</p></div></div>
+            <div class="tip" data-tip="Ubuntu, SSH" title="Linux"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Linux</p></div></div>
+            <div class="tip" data-tip="Git-хостинг и вики" title="GitHub"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">GitHub</p></div></div>
+            <div class="tip" data-tip="CI-пайплайны" title="GitHub Actions"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">CI/CD</p></div></div>
+            <div class="tip" data-tip="BaaS и Postgres" title="Supabase"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Supabase</p></div></div>
+            <div class="tip" data-tip="S3-совместимое хранилище" title="MinIO / S3"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/minio/minio-original.svg" alt="MinIO"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">MinIO</p></div></div>
+            </div>
+            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6 mt-12">Automation &amp; Quality</p>
+            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
+            <!-- Automation, testing, docs -->
+            <div class="tip" data-tip="Автоматизация воркфлоу" title="n8n"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/n8n/n8n-original.svg" alt="n8n"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">n8n</p></div></div>
+            <div class="tip" data-tip="Self-hosted PaaS" title="Coolify"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/coolify/coolify-original.svg" alt="Coolify"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Coolify</p></div></div>
+            <div class="tip" data-tip="153+ тестов в проектах" title="pytest"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/pytest/pytest-original.svg" alt="pytest"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">pytest</p></div></div>
+            <div class="tip" data-tip="Тесты фронтенда" title="Vitest"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/vitest/vitest-original.svg" alt="Vitest"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Vitest</p></div></div>
+            <div class="tip" data-tip="Доки и вики" title="Markdown"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="Markdown"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Markdown</p></div></div>
+            <div class="tip" data-tip="Скрипты и деплой" title="Bash"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Bash</p></div></div>
+            </div>
           </div>
         </div>
 
@@ -238,8 +356,9 @@
           <h4 class="uppercase text-fun-gray text-sm font-bold mb-6">Pages</h4>
           <div class="grid gap-4">
             <div><a href="index.html" class="hover:text-fun-pink transition-colors duration-200">Home</a></div>
-            <div><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="hover:text-fun-pink transition-colors duration-200">GitHub</a></div>
             <div><a href="projects.html" class="hover:text-fun-pink transition-colors duration-200">Projects</a></div>
+            <div><a href="cv.html" class="hover:text-fun-pink transition-colors duration-200">CV</a></div>
+            <div><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="hover:text-fun-pink transition-colors duration-200">GitHub</a></div>
           </div>
         </div>
         <div class="text-left mb-5 sm:mb-0">

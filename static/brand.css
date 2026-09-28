@@ -147,7 +147,7 @@ nav span.font-black > span {
   position: fixed;
   inset: 0;
   z-index: 90;
-  background: rgb(0 10 31 / 0.98);
+  background: var(--tm-menu-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -180,9 +180,10 @@ nav span.font-black > span {
 .mobile-menu.open a:nth-child(2) { transition-delay: 0.1s; }
 .mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
 .mobile-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+.mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
 .mobile-menu.open a:hover,
 .mobile-menu.open a:focus-visible {
-  color: #00c7ff;
+  color: var(--tm-accent);
   opacity: 1;
 }
 
@@ -211,5 +212,341 @@ nav span.font-black > span {
   footer img[src$="nextjs-original-wordmark.svg"],
   footer img[src$="Tailwind_CSS_Logo.svg"] {
     animation: none;
+  }
+}
+
+/* ==========================================================================
+   Theme switcher — Deadpool Red (default) <-> Original Blue.
+   The static Tailwind bundle hard-codes the blue palette, so the red theme
+   re-declares exactly the utility classes used in the HTML. Flat colors are
+   driven by CSS variables; the glow animations get red variants (a hue-rotate
+   on the same element would fight the animated filter, so it lives inside the
+   red keyframes). Preference is stored in localStorage["theme"] and applied
+   synchronously in <head> (no flash). Default on first load: Deadpool Red.
+   ========================================================================== */
+:root {
+  --tm-accent: #00c7ff;
+  --tm-accent-deep: #009ac5;
+  --tm-accent-border: rgba(0, 199, 255, 0.6);
+  --tm-accent-glow: rgba(0, 199, 255, 0.28);
+  --tm-bg: rgb(0, 10, 31);
+  --tm-surface: rgb(25, 39, 66);
+  --tm-surface-deep: rgb(0, 15, 46);
+  --tm-line: rgb(0, 15, 46);
+  --tm-line-soft: rgb(25, 39, 66);
+  --tm-muted: rgb(123, 137, 168);
+  --tm-muted-strong: rgb(178, 187, 207);
+  --tm-menu-bg: rgba(0, 10, 31, 0.98);
+}
+html.theme-red {
+  --tm-accent: #e50914; /* scarlet */
+  --tm-accent-deep: #c29b38; /* leather gold */
+  --tm-accent-border: rgba(229, 9, 20, 0.65);
+  --tm-accent-glow: rgba(229, 9, 20, 0.3);
+  --tm-bg: #0a0a0a; /* near-black matte */
+  --tm-surface: #161616;
+  --tm-surface-deep: #0a0a0a;
+  --tm-line: #222222;
+  --tm-line-soft: #1a1a1a;
+  --tm-muted: #9ba3af;
+  --tm-muted-strong: #c6ccd4;
+  --tm-menu-bg: rgba(10, 10, 10, 0.98);
+}
+
+/* Smooth cross-fade between themes; enabled only while switching. */
+html.theme-anim body,
+html.theme-anim body * {
+  transition: background-color 0.45s ease, border-color 0.45s ease, color 0.45s ease,
+    fill 0.45s ease, box-shadow 0.45s ease, filter 0.45s ease, opacity 0.45s ease !important;
+}
+
+/* Deadpool Red overrides for the purged-Tailwind utility classes. */
+html.theme-red body,
+html.theme-red .bg-bg {
+  background-color: var(--tm-bg);
+}
+html.theme-red .text-fun-pink {
+  color: var(--tm-accent);
+}
+html.theme-red .text-fun-pink-light {
+  color: var(--tm-accent-deep);
+}
+html.theme-red .hover\:text-fun-pink:hover {
+  color: var(--tm-accent);
+}
+html.theme-red .hover\:bg-fun-pink:hover {
+  background-color: var(--tm-accent);
+}
+html.theme-red .hover\:border-fun-pink:hover {
+  border-color: var(--tm-accent);
+}
+html.theme-red .bg-fun-pink-dark {
+  background-color: var(--tm-surface);
+}
+html.theme-red .bg-fun-pink-darker,
+html.theme-red .bg-fun-pink-darkerer {
+  background-color: var(--tm-surface-deep);
+}
+html.theme-red .border-fun-pink {
+  border-color: var(--tm-accent);
+}
+html.theme-red .border-fun-pink-dark {
+  border-color: var(--tm-line-soft);
+}
+html.theme-red .border-fun-pink-darker {
+  border-color: var(--tm-line);
+}
+html.theme-red .border-fun-pink-light {
+  border-color: var(--tm-accent-deep);
+}
+html.theme-red .text-fun-gray {
+  color: var(--tm-muted);
+}
+html.theme-red .text-fun-gray-light {
+  color: var(--tm-muted-strong);
+}
+html.theme-red .landingSectionTitle:before {
+  background-color: var(--tm-accent);
+}
+
+/* Glow animations get red variants (the filter/box-shadow live in keyframes).
+   The logo hue-rotate rides inside the glow keyframes so the animated filter
+   and the recolor never fight each other. */
+@keyframes logoGlowRed {
+  0%, 100% { filter: hue-rotate(150deg) saturate(0.85) drop-shadow(0 0 0 rgba(229, 9, 20, 0)); }
+  50% { filter: hue-rotate(150deg) saturate(0.85) drop-shadow(0 0 6px rgba(229, 9, 20, 0.55)); }
+}
+@keyframes cardGlowRed {
+  0%, 100% { box-shadow: 0 0 0 rgba(229, 9, 20, 0); }
+  50% { box-shadow: 0 0 22px rgba(229, 9, 20, 0.3); }
+}
+html.theme-red img[src$="logo_no_text.svg"],
+html.theme-red img[src$="logo_full.svg"] {
+  animation-name: logoFloat, logoGlowRed;
+}
+html.theme-red .card-live {
+  border-color: var(--tm-accent-border);
+  animation-name: cardGlowRed;
+}
+
+/* Hard-coded cyan inside the animated SVG covers: recolor per theme with a
+   filter. Desaturating after the hue shift keeps the dark surfaces neutral
+   (a plain hue-rotate would turn them green). */
+html.theme-red img[src$="real-estate-marketplace.svg"],
+html.theme-red img[src$="last-mile-delivery.svg"] {
+  filter: hue-rotate(150deg) saturate(0.5) brightness(1.05);
+  transition: filter 0.45s ease;
+}
+html.theme-red img[src$="lineBreak.svg"],
+html.theme-red img[src$="fancyLines.svg"] {
+  filter: hue-rotate(150deg) saturate(0.6);
+  transition: filter 0.45s ease;
+}
+
+/* Theme toggle button (desktop nav li + mobile row next to the burger). */
+.theme-toggle {
+  display: inline-flex;
+  position: relative;
+  z-index: 102; /* stay above the fixed mobile-menu overlay (z-90), like the burger */
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--tm-accent-border);
+  border-radius: 999px;
+  color: #f3f4f6;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+  transition: background-color 0.3s ease, border-color 0.45s ease, transform 0.2s ease;
+}
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--tm-accent);
+  outline-offset: 2px;
+}
+.theme-toggle .tt-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tm-accent);
+  box-shadow: 0 0 8px var(--tm-accent-glow);
+  transition: background-color 0.45s ease, box-shadow 0.45s ease;
+}
+.theme-toggle .tt-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.theme-toggle .tt-face {
+  display: none;
+  line-height: 0;
+}
+.theme-toggle.is-red .tt-face-red { display: inline-flex; }
+.theme-toggle.is-blue .tt-face-blue { display: inline-flex; }
+.theme-toggle .tt-face svg { display: block; }
+@media (max-width: 400px) {
+  .theme-toggle {
+    padding: 5px 8px;
+  }
+  .theme-toggle .tt-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-red .card-live,
+  html.theme-red img[src$="logo_no_text.svg"],
+  html.theme-red img[src$="logo_full.svg"] {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Deadpool Red doodles: the hand-drawn SVGs are hard-coded cyan and load
+   through <img>, so they are recolored with a filter on the img element.
+   Hue-rotate maps cyan -> red; saturate/brightness keeps them punchy.
+   ========================================================================== */
+html.theme-red img[src$="doodles/hero/code.svg"],
+html.theme-red img[src$="doodles/hero/coder.svg"],
+html.theme-red img[src$="doodles/hero/dino.svg"],
+html.theme-red img[src$="doodles/hero/html.svg"],
+html.theme-red img[src$="doodles/hero/js.svg"],
+html.theme-red img[src$="doodles/hero/nextjs.svg"],
+html.theme-red img[src$="doodles/hero/paintbrush.svg"],
+html.theme-red img[src$="doodles/hero/pop1.svg"],
+html.theme-red img[src$="doodles/skills/coding.svg"],
+html.theme-red img[src$="doodles/skills/fillStar.svg"],
+html.theme-red img[src$="doodles/skills/laptop.svg"],
+html.theme-red img[src$="doodles/skills/youtube.svg"] {
+  filter: hue-rotate(150deg) saturate(1.1) brightness(1.05);
+  transition: filter 0.45s ease;
+}
+
+/* Hero glitch accent: the compiled bundle never defined heroShinyBg, so the
+   sliced "shiny" spans are driven here with a theme-colored clip-path flicker. */
+.heroShiny1,
+.heroShiny2 {
+  position: relative;
+}
+.heroShiny1::before,
+.heroShiny2::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--tm-accent-deep);
+  clip-path: inset(0 0 55% 0);
+  opacity: 0;
+  pointer-events: none;
+}
+.heroShiny1::after,
+.heroShiny2::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--tm-accent);
+  clip-path: inset(60% 0 0 0);
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes glitchA {
+  0%, 91%, 100% { opacity: 0; transform: translate(0); }
+  92% { opacity: 0.9; transform: translate(-3px, -1px); }
+  94% { opacity: 0.7; transform: translate(2px, 1px); }
+  96% { opacity: 0; }
+}
+@keyframes glitchB {
+  0%, 93%, 100% { opacity: 0; transform: translate(0); }
+  94% { opacity: 0.8; transform: translate(3px, 1px); }
+  96% { opacity: 0.6; transform: translate(-2px, -1px); }
+  98% { opacity: 0; }
+}
+.heroShiny1::before { animation: glitchA 4.5s steps(1, end) infinite; }
+.heroShiny1::after  { animation: glitchB 4.5s steps(1, end) infinite; }
+.heroShiny2::before { animation: glitchA 4.5s steps(1, end) infinite; animation-delay: 2.2s; }
+.heroShiny2::after  { animation: glitchB 4.5s steps(1, end) infinite; animation-delay: 2.2s; }
+
+/* ==========================================================================
+   3D accents
+   ========================================================================== */
+/* Scene + logo card: the header logo floats in a perspective scene and
+   continuously wobbles on X/Y like a card in 3D space. */
+.logo3d-wrap {
+  perspective: 700px;
+  display: inline-block;
+}
+.logo3d {
+  transform-style: preserve-3d;
+  animation: logoWobble3d 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes logoWobble3d {
+  0%, 100% { transform: rotateX(10deg) rotateY(-14deg) translateZ(0); }
+  25% { transform: rotateX(-7deg) rotateY(12deg) translateZ(8px); }
+  50% { transform: rotateX(6deg) rotateY(-10deg) translateZ(0); }
+  75% { transform: rotateX(-9deg) rotateY(15deg) translateZ(6px); }
+}
+/* Project cards tilt toward the pointer (pure JS inline, desktop only).
+   The transform is applied by the tilt script; rules below just opt in. */
+.tilt3d {
+  transform-style: preserve-3d;
+  transition: transform 0.12s ease-out;
+  will-change: transform;
+}
+.tilt3d.is-idle {
+  transition: transform 0.5s ease;
+}
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .tilt3d { transform: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo3d { animation: none; }
+  .heroShiny1::before, .heroShiny1::after,
+  .heroShiny2::before, .heroShiny2::after { animation: none; opacity: 0; }
+}
+
+/* ==========================================================================
+   Toolbelt category labels + CSS-only tooltips (data-tip attribute).
+   The tooltip uses theme variables, so it recolors with the theme switch.
+   ========================================================================== */
+.tip {
+  position: relative;
+}
+.tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: 190px;
+  background: var(--tm-surface);
+  color: #f3f4f6;
+  border: 1px solid var(--tm-accent-border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 60;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.tip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+@media (hover: none) {
+  .tip::after {
+    display: none;
   }
 }
