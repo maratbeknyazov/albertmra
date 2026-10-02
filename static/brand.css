@@ -368,14 +368,34 @@ html.theme-red img[src$="fancyLines.svg"] {
   outline: 2px solid var(--tm-accent);
   outline-offset: 2px;
 }
-.theme-toggle .tt-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--tm-accent);
-  box-shadow: 0 0 8px var(--tm-accent-glow);
-  transition: background-color 0.45s ease, box-shadow 0.45s ease;
+/* Two-lamp indicator: both theme colors are visible on the button itself,
+   the active one glows larger — the switch reads as Red <-> Blue at a glance. */
+.theme-toggle .tt-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
+.theme-toggle .tt-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+}
+.theme-toggle .tt-dot-red { background: #e50914; box-shadow: 0 0 7px rgba(229, 9, 20, 0.6); }
+.theme-toggle .tt-dot-blue { background: #00c7ff; box-shadow: 0 0 7px rgba(0, 199, 255, 0.55); }
+.theme-toggle.is-red .tt-dot-red { transform: scale(1.5); }
+.theme-toggle.is-blue .tt-dot-blue { transform: scale(1.5); }
+.theme-toggle.is-red .tt-dot-blue,
+.theme-toggle.is-blue .tt-dot-red { opacity: 0.5; }
+.theme-toggle:active { transform: scale(0.94); }
+
+/* First-visit attention pulse (JS adds .tt-hint once, per browser). */
+@keyframes hintPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+  30% { box-shadow: 0 0 0 9px rgba(255, 255, 255, 0.22); }
+  60% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+.theme-toggle.tt-hint { animation: hintPulse 1.6s ease-in-out 3; }
 .theme-toggle .tt-label {
   font-size: 11px;
   font-weight: 700;
@@ -544,6 +564,162 @@ html.theme-red img[src$="doodles/skills/youtube.svg"] {
 .tip:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   Prototype-style FX (Alex Mercer biomass): living tendril hives that grow
+   from section corners, consume-glow card hover, a cracked-biomass border on
+   the CV block, bio corner brackets, a scroll-reveal infest, and a full-page
+   vein flash when the theme switches. Pure CSS + one tiny JS helper.
+   ========================================================================== */
+/* Adjacent corners take slightly different growth delays so the hive looks
+   organic, not mirrored. */
+.biohive.br-tl, .biohive.br-br { animation-delay: 0.5s; }
+.biohive {
+  position: absolute;
+  width: 220px;
+  height: 170px;
+  pointer-events: none;
+  opacity: 0.42;
+  z-index: 0;
+  animation: hivePulse 6.5s ease-in-out infinite;
+}
+.biohive.br-tl { top: -34px; left: -30px; }
+.biohive.br-tr { top: -34px; right: -30px; }
+.biohive.br-bl { bottom: -34px; left: -30px; }
+.biohive.br-br { bottom: -34px; right: -30px; }
+@keyframes hivePulse {
+  0%, 100% { opacity: 0.32; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.04); }
+}
+.biohive .t { transform-box: fill-box; transform-origin: 50% 100%; }
+.biohive .t1 { animation: tendrilSway 5.2s ease-in-out infinite; }
+.biohive .t2 { animation: tendrilSway 4.4s ease-in-out 0.7s infinite; }
+.biohive .t3 { animation: tendrilSway 6s ease-in-out 1.4s infinite; }
+@keyframes tendrilSway {
+  0%, 100% { transform: rotate(0deg); }
+  35% { transform: rotate(5deg); }
+  70% { transform: rotate(-4deg); }
+}
+
+/* Cards "consume" the cursor: on hover the border edge lights up like raw
+   biomass and the glow collapses inward (lightweight, composites only). */
+.card-live { position: relative; }
+.card-live::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 12px;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(140px circle at var(--mx, 50%) var(--my, 50%), var(--tm-accent-glow), transparent 70%);
+  transition: opacity 0.25s ease;
+}
+.card-live:hover::after { opacity: 1; }
+.card-live:hover { animation-play-state: paused; box-shadow: 0 0 26px var(--tm-accent-glow); }
+
+/* CV block: cracked, infected biomass frame with drifting virus cells. */
+.bioframe {
+  position: relative;
+  border: 1px solid var(--tm-accent-border);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(127, 127, 127, 0.05), rgba(127, 127, 127, 0.02));
+  padding: 28px clamp(16px, 4vw, 40px);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.45);
+}
+.bioframe::before,
+.bioframe::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 20px;
+  pointer-events: none;
+  border: 1px dashed var(--tm-accent-border);
+  opacity: 0.35;
+  -webkit-mask-image: repeating-conic-gradient(from 0deg, #000 0deg 14deg, transparent 14deg 46deg);
+  mask-image: repeating-conic-gradient(from 0deg, #000 0deg 14deg, transparent 14deg 46deg);
+  animation: crackDrift 14s linear infinite;
+}
+.bioframe::after {
+  inset: -12px;
+  opacity: 0.16;
+  animation-direction: reverse;
+  animation-duration: 24s;
+}
+@keyframes crackDrift {
+  to { transform: rotate(360deg); }
+}
+.virus {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at 35% 35%, var(--tm-accent), transparent 72%);
+  opacity: 0;
+  animation: virusDrift 11s ease-in-out infinite;
+}
+@keyframes virusDrift {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  18% { opacity: 0.5; }
+  55% { opacity: 0.22; }
+  100% { opacity: 0; transform: translate(34px, -46px) scale(1.15); }
+}
+
+/* Bio corner brackets on the CV title (computed from the theme accent). */
+.bio-corners {
+  position: relative;
+  padding-left: 18px;
+}
+.bio-corners::before,
+.bio-corners::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--tm-accent);
+  pointer-events: none;
+}
+.bio-corners::before { left: -8px; top: 2px; border-right: 0; border-bottom: 0; }
+.bio-corners::after { right: -8px; bottom: 2px; border-left: 0; border-top: 0; }
+
+/* Sections surface from the ground like the virus surfacing in Prototype:
+   one-time IntersectionObserver reveal (js adds .bio-in when visible).
+   Hiding is gated on html.biofx, set by the FX script — with JS disabled the
+   page stays fully visible. */
+html.biofx .bio-reveal {
+  opacity: 0;
+  transform: translateY(34px) scale(0.985);
+}
+html.biofx .bio-reveal.bio-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Full-page vein flash when the theme flips (html.theme-flash for 750ms). */
+.theme-flash::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 42% at 50% 8%, var(--tm-accent-glow), transparent 70%),
+    radial-gradient(45% 38% at 12% 88%, var(--tm-accent-glow), transparent 70%),
+    radial-gradient(45% 38% at 88% 82%, var(--tm-accent-glow), transparent 70%);
+  animation: veinFlash 0.75s ease-out forwards;
+}
+@keyframes veinFlash {
+  0% { opacity: 0; }
+  18% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .biohive, .biohive .t1, .biohive .t2, .biohive .t3,
+  .bioframe::before, .bioframe::after, .virus,
+  .theme-toggle.tt-hint { animation: none !important; }
+  .theme-flash::before { animation: none; opacity: 0; }
+  .bio-reveal { opacity: 1; transform: none; }
 }
 @media (hover: none) {
   .tip::after {
