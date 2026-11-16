@@ -8,578 +8,703 @@
   <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
   <link rel="manifest" href="static/favicon/site.webmanifest">
-  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)" href="static/favicon/favicon-red.svg" id="favLink1">
-  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: light)" href="static/favicon/favicon-blue.svg" id="favLink2">
+  <link rel="icon" type="image/svg+xml" href="static/favicon/favicon-red.svg">
   <meta name="title" content="Albert Muratbaev — Full-stack &amp; Mobile Developer">
-  <meta name="description" content="I'm Albert — a full-stack and mobile developer turning complex product flows into clear, reliable systems with Python, Django, FastAPI, React Native, and Flutter.">
+  <meta name="description" content="Full-stack and mobile developer turning complex product flows into clear, reliable systems with Python, Django, FastAPI, React Native, and Flutter.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Albert Muratbaev — Full-stack &amp; Mobile Developer">
-  <meta property="og:description" content="I'm Albert — a full-stack and mobile developer turning complex product flows into clear, reliable systems with Python, Django, FastAPI, React Native, and Flutter.">
-  <meta property="twitter:card" content="summary">
-  <meta property="twitter:title" content="Albert Muratbaev — Full-stack &amp; Mobile Developer">
-  <meta property="twitter:description" content="I'm Albert — a full-stack and mobile developer turning complex product flows into clear, reliable systems with Python, Django, FastAPI, React Native, and Flutter.">
-  <link rel="icon" type="image/svg+xml" href="static/favicon/favicon-red.svg" id="themeFavicon">
-  <link rel="preload" as="image" href="static/favicon/favicon-blue.svg">
-  <meta name="theme-color" id="metaThemeColor" content="#0a0a0a">
-  <link rel="preload" as="image" href="static/logos/logo_no_text.svg">
-  <link rel="preload" as="image" href="static/doodles/hero/html.svg">
-  <link rel="preload" as="image" href="static/doodles/hero/coder.svg">
-  <link rel="preload" as="image" href="static/doodles/hero/js.svg">
-  <link rel="preload" as="image" href="static/doodles/hero/dino.svg">
-  <link rel="preload" as="image" href="static/doodles/hero/paintbrush.svg">
+  <meta property="og:description" content="Full-stack and mobile developer turning complex product flows into clear, reliable systems with Python, Django, FastAPI, React Native, and Flutter.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Albert Muratbaev — Full-stack &amp; Mobile Developer">
+  <meta name="twitter:description" content="Full-stack and mobile developer turning complex product flows into clear, reliable systems with Python, Django, FastAPI, React Native, and Flutter.">
+  <meta name="theme-color" content="#04050c">
   <link rel="preload" as="image" href="static/projects/real-estate-marketplace.svg">
   <link rel="preload" as="image" href="static/projects/last-mile-delivery.svg">
-  <link rel="stylesheet" href="_next/static/chunks/e24ef282d7aafded.css">
-  <link rel="stylesheet" href="static/brand.css">
+  <link rel="preload" as="image" href="gh/devicons/devicon/icons/python/python-original.svg">
+  <link rel="stylesheet" href="static/space.css">
   <script>
-    /* Theme boot before first paint: applies html.theme-red, syncs favicon and
-       meta theme-color. Default: Deadpool Red. All paths are relative so it
-       works on GitHub Pages project sites. */
+    /* Language boot before first paint: keeps <html lang> correct for a11y and SEO. */
     (function () {
-      var theme = 'red';
-      try { if (localStorage.getItem('theme') === 'blue') theme = 'blue'; } catch (e) {}
-      var root = document.documentElement;
-      if (theme === 'red') root.classList.add('theme-red');
-      var fav = document.getElementById('themeFavicon');
-      if (fav) fav.href = 'static/favicon/favicon-' + (theme === 'red' ? 'red' : 'blue') + '.svg';
-      var meta = document.getElementById('metaThemeColor');
-      if (meta) meta.setAttribute('content', theme === 'red' ? '#0a0a0a' : '#000a1f');
+      try {
+        var saved = localStorage.getItem('albert.lang');
+        if (saved === 'en' || saved === 'ru') {
+          document.documentElement.lang = saved;
+          document.documentElement.setAttribute('data-lang', saved);
+        }
+      } catch (e) {}
     })();
   </script>
 </head>
-<body>
-  <div class="w-full m-auto flex flex-col items-center justify-center min-h-screen opening-box-animate-paddin text-white overflow-hidden md:overflow-visible" style="max-width:1200px">
-    <main class="p-5 w-full flex-1 text-center">
+<body data-page="home">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="starfield" aria-hidden="true"></canvas>
 
-      <!-- Desktop navigation -->
-      <div class="hidden sm:block z-100">
-        <nav class="flex items-center justify-between">
-          <li class="list-none font-bold text-lg cursor-pointer">
-            <a href="index.html">
-              <span class="font-black text-xl flex items-center">
-                <span class="logo3d-wrap"><img class="mr-2 logo3d transform hover:rotate-360 hover:scale-75 transition-transform duration-500" src="static/logos/logo_no_text.svg" width="60" alt="albertmra logo"></span>
-                <span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">l</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">b</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">e</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">t</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">m</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span>
-              </span>
-            </a>
-          </li>
-          <ul class="flex items-center space-x-10">
-            <li class="list-none text-white opacity-100"><a href="index.html">Home</a></li>
-            <li class="list-none text-white opacity-40 hover:opacity-100 transition-opacity"><a href="projects.html">Projects</a></li>
-            <li class="list-none text-white opacity-40 hover:opacity-100 transition-opacity"><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">GitHub</a></li>
-            <li class="list-none">
-              <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Theme: Deadpool Red — activate Original Blue" title="Switch theme"><span class="tt-face tt-face-red" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 24C14 12 50 12 56 24C57 26 57 38 56 40C50 52 14 52 8 40C7 38 7 26 8 24Z" fill="#e50914"/><circle cx="24" cy="34" r="5" fill="#0a0a0a"/><circle cx="40" cy="34" r="5" fill="#0a0a0a"/><path d="M14 22C22 15 42 15 50 22" stroke="#c29b38" stroke-width="4" stroke-linecap="round"/></svg></span><span class="tt-face tt-face-blue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 6L56 14V32C56 47 45 55 32 60C19 55 8 47 8 32V14Z" fill="#00c7ff"/><circle cx="32" cy="33" r="7" fill="#000a1f"/></svg></span><span class="tt-dots" aria-hidden="true"><span class="tt-dot tt-dot-red"></span><span class="tt-dot tt-dot-blue"></span></span><span class="tt-label">Red</span></button>
-            </li>
-          </ul>
-        </nav>
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="brand" href="index.html" aria-label="albertmra — home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <ellipse cx="16" cy="17" rx="13" ry="5.5" stroke="#67e8f9" stroke-width="1.1" opacity=".55" transform="rotate(-24 16 17)"/>
+            <circle cx="16" cy="16" r="6.2" fill="#22d3ee" opacity=".16"/>
+            <circle cx="16" cy="16" r="3.4" fill="#22d3ee"/>
+            <circle cx="16" cy="16" r="5.7" stroke="#8b5cf6" stroke-width="1" opacity=".85"/>
+            <circle cx="26.4" cy="10.6" r="1.5" fill="#f472b6"/>
+          </svg>
+        </span>
+        <span class="brand__name" aria-hidden="true"><span>a</span><span>l</span><span>b</span><span>e</span><span>r</span><span>t</span><span>m</span><span>r</span><span>a</span></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a class="nav__link is-active" href="#top" data-i18n="nav.home">Home</a>
+        <a class="nav__link" href="#about" data-i18n="nav.about">About</a>
+        <a class="nav__link" href="#projects" data-i18n="nav.projects">Projects</a>
+        <a class="nav__link" href="#skills" data-i18n="nav.skills">Skills</a>
+        <a class="nav__link" href="#journey" data-i18n="nav.journey">Journey</a>
+        <a class="nav__link" href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="nav__actions">
+        <div class="lang" role="group" aria-label="Language" data-i18n-aria="nav.lang">
+          <button class="lang__btn" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang__btn" type="button" data-lang="ru" aria-pressed="false">RU</button>
+        </div>
+        <a class="nav__cta" href="#contact">
+          <span data-i18n="nav.cta">Let's talk</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu" data-i18n-aria="nav.menu">
+          <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18"/><path d="M3 12h18"/><path d="M3 17h18"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg>
+        </button>
       </div>
+    </div>
+  </header>
 
-      <!-- Mobile navigation -->
-      <div class="-m-5 block sm:hidden z-100">
-        <nav>
-          <div class="w-full justify-between flex items-center false p-5" style="z-index:101">
-            <li class="list-none font-bold text-lg">
-              <a href="index.html">
-                <span class="font-black text-xl flex items-center">
-                  <span class="logo3d-wrap"><img class="mr-2 logo3d" src="static/logos/logo_no_text.svg" width="44" alt="albertmra logo"></span>
-                  <span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">l</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">b</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">e</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">t</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">m</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span>
-                </span>
-              </a>
-            </li>
-            <div class="flex items-center" style="gap:14px;z-index:102">
-              <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Theme: Deadpool Red — activate Original Blue" title="Switch theme"><span class="tt-face tt-face-red" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 24C14 12 50 12 56 24C57 26 57 38 56 40C50 52 14 52 8 40C7 38 7 26 8 24Z" fill="#e50914"/><circle cx="24" cy="34" r="5" fill="#0a0a0a"/><circle cx="40" cy="34" r="5" fill="#0a0a0a"/><path d="M14 22C22 15 42 15 50 22" stroke="#c29b38" stroke-width="4" stroke-linecap="round"/></svg></span><span class="tt-face tt-face-blue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 6L56 14V32C56 47 45 55 32 60C19 55 8 47 8 32V14Z" fill="#00c7ff"/><circle cx="32" cy="33" r="7" fill="#000a1f"/></svg></span><span class="tt-dots" aria-hidden="true"><span class="tt-dot tt-dot-red"></span><span class="tt-dot tt-dot-blue"></span></span><span class="tt-label">Red</span></button>
-              <button class="burger-btn" aria-label="Toggle menu" aria-expanded="false" type="button">
-              <svg class="burger-icon icon-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h18"/><path d="M3 12h18"/><path d="M3 17h18"/></svg>
-              <svg class="burger-icon icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-            </button>
-            </div>
-          </div>
-        </nav>
-        <div class="mobile-menu" id="mobileMenu">
-          <a href="index.html">Home</a>
-          <a href="projects.html">Projects</a>
-          <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="mailto:maratbeknyazov@gmail.com">Email</a>
-        </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__links" aria-label="Mobile">
+      <a class="mobile-menu__link" href="#top"><span data-i18n="nav.home">Home</span><span>01</span></a>
+      <a class="mobile-menu__link" href="#about"><span data-i18n="nav.about">About</span><span>02</span></a>
+      <a class="mobile-menu__link" href="#projects"><span data-i18n="nav.projects">Projects</span><span>03</span></a>
+      <a class="mobile-menu__link" href="#skills"><span data-i18n="nav.skills">Skills</span><span>04</span></a>
+      <a class="mobile-menu__link" href="#journey"><span data-i18n="nav.journey">Journey</span><span>05</span></a>
+      <a class="mobile-menu__link" href="#contact"><span data-i18n="nav.contact">Contact</span><span>06</span></a>
+    </nav>
+    <div class="mobile-menu__foot">
+      <div class="mobile-menu__socials">
+        <a class="social" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </a>
+        <a class="social" href="https://t.me/albertmra" target="_blank" rel="noreferrer" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.458 0 .66-.21.916-.457l2.199-2.138 4.574 3.379c.843.465 1.448.226 1.658-.782l2.998-14.128c.308-1.233-.473-1.794-1.549-1.313z"/></svg>
+        </a>
+        <a class="social" href="https://www.linkedin.com/in/albert-muratbaev-a39ba4373/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="social" href="https://www.instagram.com/albertmra_/" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+        <a class="social" href="mailto:maratbeknyazov@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        </a>
       </div>
-      <script>
-        (function () {
-          var btn = document.querySelector('.burger-btn');
-          var menu = document.getElementById('mobileMenu');
-          if (!btn || !menu) return;
-          btn.addEventListener('click', function () {
-            var open = menu.classList.toggle('open');
-            btn.classList.toggle('open', open);
-            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-            document.body.style.overflow = open ? 'hidden' : '';
-          });
-          menu.addEventListener('click', function (e) {
-            if (e.target.closest('a')) {
-              menu.classList.remove('open');
-              btn.classList.remove('open');
-              btn.setAttribute('aria-expanded', 'false');
-              document.body.style.overflow = '';
-            }
-          });
-        })();
-
-        /* Theme switcher: toggles html.theme-red, persists to localStorage["theme"],
-           and syncs all toggle buttons (desktop + mobile), the favicon and the
-           meta theme-color. The .theme-anim class enables the cross-fade
-           transitions only while switching. */
-        (function () {
-          var btns = document.querySelectorAll('.theme-toggle');
-          function apply(theme) {
-            var isRed = theme !== 'blue';
-            document.documentElement.classList.toggle('theme-red', isRed);
-            var fav = document.getElementById('themeFavicon');
-            if (fav) fav.href = 'static/favicon/favicon-' + (isRed ? 'red' : 'blue') + '.svg';
-            var meta = document.getElementById('metaThemeColor');
-            if (meta) meta.setAttribute('content', isRed ? '#0a0a0a' : '#000a1f');
-            btns.forEach(function (btn) {
-              btn.classList.toggle('is-red', isRed);
-              btn.classList.toggle('is-blue', !isRed);
-              btn.setAttribute('aria-checked', isRed ? 'true' : 'false');
-              btn.setAttribute('aria-label', isRed ? 'Theme: Deadpool Red — activate Original Blue' : 'Theme: Original Blue — activate Deadpool Red');
-              var label = btn.querySelector('.tt-label');
-              if (label) label.textContent = 'Theme';
-            });
-          }
-          apply(document.documentElement.classList.contains('theme-red') ? 'red' : 'blue');
-          /* First-visit hint: make the switch discoverable. Plays a short
-             attention pulse once, then never again (localStorage flag). */
-          var hinted = false;
-          try { hinted = localStorage.getItem('themeHintShown') === '1'; } catch (e) {}
-          if (!hinted) {
-            window.setTimeout(function () {
-              btns.forEach(function (btn) { btn.classList.add('tt-hint'); });
-            }, 1600);
-          }
-          btns.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-              var next = document.documentElement.classList.contains('theme-red') ? 'blue' : 'red';
-              document.documentElement.classList.add('theme-anim');
-              apply(next);
-              btns.forEach(function (b) { b.classList.remove('tt-hint'); });
-              try { localStorage.setItem('theme', next); localStorage.setItem('themeHintShown', '1'); } catch (e) {}
-              window.setTimeout(function () { document.documentElement.classList.remove('theme-anim'); }, 600);
-              /* Prototype-style biomass flash on switch (keyframes in brand.css). */
-              var hr = document.documentElement;
-              hr.classList.add('theme-flash');
-              window.setTimeout(function () { hr.classList.remove('theme-flash'); }, 750);
-            });
-          });
-        })();
-
-        /* 3D tilt for project cards: desktop pointers only. The card leans
-           toward the cursor (max 7deg) and springs back on leave. */
-        (function () {
-          function initTilt() {
-          var cards = document.querySelectorAll('.card-live');
-          cards.forEach(function (card) {
-            card.classList.add('tilt3d', 'is-idle');
-            card.addEventListener('pointermove', function (e) {
-              var r = card.getBoundingClientRect();
-              var rx = ((e.clientY - r.top) / r.height - 0.5) * -10;
-              var ry = ((e.clientX - r.left) / r.width - 0.5) * 10;
-              card.classList.remove('is-idle');
-              card.style.transform = 'perspective(800px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
-            });
-            card.addEventListener('pointerleave', function () {
-              card.classList.add('is-idle');
-              card.style.transform = '';
-            });
-          });
-          }
-          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTilt);
-          else initTilt();
-        })();
-      </script>
-
-      <!-- Hero -->
-      <div class="relative heroElem w-full pt-20 pb-40 m-auto flex justify-center text-center flex-col items-center z-1" style="max-width:1200px">
-        <p class="text-xl mb-5">Hey, I&#x27;m Albert.</p>
-        <h1 class="heroTitle inline-block max-w-2xl lg:max-w-4xl w-auto relative text-5xl md:text-6xl lg:text-7xl tracking-tighter mb-5 font-bold heroShinyBg">I enjoy <span class="heroShiny1 text-fun-pink" data-text="building">building</span> and <span class="heroShiny2 text-fun-pink" data-text="shipping">shipping</span> for the web and mobile.<img class="sqD squiggle-hero-html w-16 top-[-90px] right-[5%] sm:top-[-90px] sm:right-[170px]" style="animation-delay:0.1s" src="static/doodles/hero/html.svg" alt=""><img class="sqD squiggle-hero-nextjs hidden top-[75px] right-0 w-11" style="animation-delay:0.2s" src="static/doodles/hero/nextjs.svg" alt=""><img class="sqD hidden sm:block bottom-[-340px] left-[-180px]" style="animation-delay:0.4s" src="static/doodles/hero/coder.svg" alt=""><img class="sqD hidden sm:block left-[100px] lg:left-[160px] bottom-[-150px]" style="animation-delay:0.5s" src="static/doodles/hero/js.svg" alt=""><img class="sqD bottom-[-320px] right-[65%] sm:right-[45%]" style="animation-delay:0.6s" src="static/doodles/hero/dino.svg" alt=""><img class="sqD right-[-60px] sm:right-0 bottom-[-180px] lg:[5%]" style="animation-delay:0.7s" src="static/doodles/hero/paintbrush.svg" alt=""><img class="sqD squiggle-hero-pop1 hidden sm:block sm:top-[-130px] sm:left-[15%] lg:top-[-130px] lg:left-[120px]" src="static/doodles/hero/pop1.svg" alt=""><img class="sqD left-[-35px] bottom-[-85px] sm:bottom-[-100px] sm:left-5 opacity-40" style="animation-delay:0.9s" src="static/doodles/hero/code.svg" alt=""></h1>
-        <p class="text-fun-gray text-lg max-w-xl mx-auto mb-10">Full-stack &amp; mobile developer turning complex product flows into clear, reliable systems — REST APIs, cross-platform apps, realtime communication, and geospatial features.</p>
-        <a href="#learnmore"><div class="cursor-pointer font-bold whitespace-nowrap px-10 py-4 text-fun-white border-2 text-xl rounded-full border-fun-white bg-bg hover:bg-fun-pink hover:text-white hover:border-fun-pink transition-colors">Tell me more</div></a>
-      </div>
-
-      <div class="mt-20 space-y-32">
-
-        <!-- Featured projects -->
-        <div class="flex flex-col text-left justify-between pt-8 relative">
-          <div id="learnmore">
-            <div class="overflow-x-hidden w-full pt-5">
-              <h2 class="landingSectionTitle max-w-sm md:max-w-max mx-auto md:mx-0 text-center md:text-left relative text-3xl font-bold mb-10 pt-4 md:pt-0 md:w-max">Here are a few of my favorite projects.</h2>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 gap-12 md:gap-5 md:grid-cols-3 items-start">
-
-            <div class="max-w-sm mx-auto flex flex-col projects-center md:projects-start md:justify-center">
-              <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="card-live w-full relative rounded-xl border-fun-gray border p-2 transition hover:-translate-y-2 hover:opacity-75 hover:border-fun-pink will-change-projectCard">
-                <img class="w-full rounded-md" src="static/projects/real-estate-marketplace.svg" alt="Real Estate Marketplace MVP">
-              </a>
-              <div class="w-full mt-5">
-                <div class="flex projects-center justify-between">
-                  <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><h3 class="text-lg font-bold">Real Estate Marketplace MVP</h3></a>
-                  <div class="space-x-2">
-                    <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><img alt="Github Icon" loading="lazy" width="16" height="16" src="static/icons/github.svg"></a>
-                  </div>
-                </div>
-                <p class="text-fun-gray text-left text-sm">Production-like marketplace with a Django/PostGIS backend and an Expo React Native client: OTP auth with JWT rotation, IDOR/BOLA protection, bounding-box search, and presigned uploads. Verified by 153 backend and 11 mobile tests.</p>
-                <ul class="flex flex-wrap items-center mt-2 -ml-2 list-none">
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">Django</div></a></li>
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">PostGIS</div></a></li>
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">Expo</div></a></li>
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">JWT</div></a></li>
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">Docker</div></a></li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="max-w-sm mx-auto flex flex-col projects-center md:projects-start md:justify-center">
-              <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="card-live w-full relative rounded-xl border-fun-gray border p-2 transition hover:-translate-y-2 hover:opacity-75 hover:border-fun-pink will-change-projectCard">
-                <img class="w-full rounded-md" src="static/projects/last-mile-delivery.svg" alt="Last-mile Delivery Platform">
-              </a>
-              <div class="w-full mt-5">
-                <div class="flex projects-center justify-between">
-                  <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><h3 class="text-lg font-bold">Last-mile Delivery Platform</h3></a>
-                  <div class="space-x-2">
-                    <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><img alt="Github Icon" loading="lazy" width="16" height="16" src="static/icons/github.svg"></a>
-                  </div>
-                </div>
-                <p class="text-fun-gray text-left text-sm">Full-stack delivery workflow with Flutter apps, a FastAPI backend, and a React dispatcher dashboard: order state machine, authorized WebSocket GPS tracking, Redis Pub/Sub, server-side ETA, and PostGIS queries.</p>
-                <ul class="flex flex-wrap items-center mt-2 -ml-2 list-none">
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">FastAPI</div></a></li>
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">Flutter</div></a></li>
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">WebSocket</div></a></li>
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">Redis</div></a></li>
-                  <li><a href="projects.html"><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">PostGIS</div></a></li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="max-w-sm mx-auto flex flex-col projects-center md:projects-start md:justify-center">
-              <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="w-full relative rounded-xl border-fun-gray border p-2 transition hover:-translate-y-2 hover:opacity-75 hover:border-fun-pink will-change-projectCard flex items-center justify-center" style="min-height:180px">
-                <span class="text-fun-pink text-4xl font-bold">⟩⟩</span>
-              </a>
-              <div class="w-full mt-5">
-                <div class="flex projects-center justify-between">
-                  <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><h3 class="text-lg font-bold">More on GitHub</h3></a>
-                  <div class="space-x-2">
-                    <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><img alt="Github Icon" loading="lazy" width="16" height="16" src="static/icons/github.svg"></a>
-                  </div>
-                </div>
-                <p class="text-fun-gray text-left text-sm">Explore the full collection of repositories — tooling, experiments, and production-like systems.</p>
-              </div>
-            </div>
-
-          </div>
-          <div class="relative w-full mt-2">
-            <a href="projects.html"><div class="mt-8 max-w-sm md:max-w-2xl border border-fun-pink mx-auto text-center w-full whitespace-nowrap px-8 py-3 rounded-full text-fun-pink bg-fun-pink-darkerer hover:bg-fun-pink hover:text-white transition-colors cursor-pointer">View All</div></a>
-          </div>
-        </div>
-
-        <!-- Toolbelt -->
-        <div class="flex flex-col md:flex-row justify-between relative">
-          <h2 class="relative text-3xl w-full text-center md:text-left font-bold md:max-w-lg mb-10 md:mr-10 md:mb-0 md:w-max mr-0">I got the experience.<br>Here is my toolbelt for success.<img class="sqD bottom-[-80px] left-[-50px] lg:bottom-[-50px] lg:left-[-35px] z-[-10]" src="static/doodles/skills/laptop.svg" alt=""><img class="sqD hidden md:block top-[140px] right-0 lg:top-[105px]" src="static/doodles/skills/coding.svg" alt=""><img class="sqD hidden md:block top-[200px] right-[50px] lg:top-[170px] lg:right-[50px]" src="static/doodles/skills/youtube.svg" alt=""><img class="sqD top-[-15px] right-[-15px]" src="static/doodles/skills/fillStar.svg" alt=""></h2>
-          <div class="relative max-w-lg w-full mx-auto md:mx-none">
-            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6">Languages</p>
-            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
-            <!-- Languages -->
-            <div class="tip" data-tip="Основной язык" title="Python"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Python</p></div></div>
-            <div class="tip" data-tip="Основной стек" title="TypeScript"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">TypeScript</p></div></div>
-            <div class="tip" data-tip="Frontend и скрипты" title="JavaScript"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">JavaScript</p></div></div>
-            <div class="tip" data-tip="Flutter-приложения" title="Dart"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Dart</p></div></div>
-            <div class="tip" data-tip="Разметка" title="HTML"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">HTML</p></div></div>
-            <div class="tip" data-tip="Стилизация" title="CSS"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">CSS</p></div></div>
-            </div>
-            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6 mt-12">Backend &amp; API</p>
-            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
-            <!-- Backend & API -->
-            <div class="tip" data-tip="Основной фреймворк" title="Django"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Django</p></div></div>
-            <div class="tip" data-tip="Асинхронные API" title="FastAPI"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">FastAPI</p></div></div>
-            <div class="tip" data-tip="Фоновые задачи" title="Celery"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/celery/celery-original.svg" alt="Celery"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Celery</p></div></div>
-            <div class="tip" data-tip="Кэш и Pub/Sub" title="Redis"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Redis</p></div></div>
-            <div class="tip" data-tip="PostGIS, геозапросы" title="PostgreSQL"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">PostgreSQL</p></div></div>
-            <div class="tip" data-tip="Локальные БД" title="SQLite"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">SQLite</p></div></div>
-            </div>
-            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6 mt-12">Mobile &amp; Web</p>
-            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
-            <!-- Mobile & Web -->
-            <div class="tip" data-tip="Кроссплатформенные приложения" title="React Native"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/reactnative/reactnative-original.svg" alt="React Native"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">React Native</p></div></div>
-            <div class="tip" data-tip="Мобильная сборка и роутинг" title="Expo"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/expo/expo-original.svg" alt="Expo"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Expo</p></div></div>
-            <div class="tip" data-tip="BLoC, Clean Architecture" title="Flutter"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Flutter</p></div></div>
-            <div class="tip" data-tip="Дашборды" title="React"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/react/react-original.svg" alt="React"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">React</p></div></div>
-            <div class="tip" data-tip="Сборка фронтенда" title="Vite"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/vite/vite-original.svg" alt="Vite"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Vite</p></div></div>
-            <div class="tip" data-tip="Утилити-стили" title="Tailwind CSS"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Tailwind</p></div></div>
-            </div>
-            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6 mt-12">Infrastructure</p>
-            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
-            <!-- Infrastructure -->
-            <div class="tip" data-tip="Контейнеры и Compose" title="Docker"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Docker</p></div></div>
-            <div class="tip" data-tip="Ubuntu, SSH" title="Linux"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Linux</p></div></div>
-            <div class="tip" data-tip="Git-хостинг и вики" title="GitHub"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">GitHub</p></div></div>
-            <div class="tip" data-tip="CI-пайплайны" title="GitHub Actions"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">CI/CD</p></div></div>
-            <div class="tip" data-tip="BaaS и Postgres" title="Supabase"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Supabase</p></div></div>
-            <div class="tip" data-tip="S3-совместимое хранилище" title="MinIO / S3"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/minio/minio-original.svg" alt="MinIO"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">MinIO</p></div></div>
-            </div>
-            <p class="text-xs font-bold uppercase tracking-widest text-fun-pink text-center md:text-left mb-6 mt-12">Automation &amp; Quality</p>
-            <div class="grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
-            <!-- Automation, testing, docs -->
-            <div class="tip" data-tip="Автоматизация воркфлоу" title="n8n"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/n8n/n8n-original.svg" alt="n8n"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">n8n</p></div></div>
-            <div class="tip" data-tip="Self-hosted PaaS" title="Coolify"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/coolify/coolify-original.svg" alt="Coolify"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Coolify</p></div></div>
-            <div class="tip" data-tip="153+ тестов в проектах" title="pytest"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/pytest/pytest-original.svg" alt="pytest"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">pytest</p></div></div>
-            <div class="tip" data-tip="Тесты фронтенда" title="Vitest"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/vitest/vitest-original.svg" alt="Vitest"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Vitest</p></div></div>
-            <div class="tip" data-tip="Доки и вики" title="Markdown"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="Markdown"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Markdown</p></div></div>
-            <div class="tip" data-tip="Скрипты и деплой" title="Bash"><div class="w-10 mx-auto flex items-center flex-col justify-center"><img src="gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash"><p class="text-xs text-fun-gray font-bold mt-3 opacity-80">Bash</p></div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Highlights -->
-        <div class="flex flex-col text-left relative">
-          <h2 class="max-w-sm md:max-w-max mx-auto md:mx-0 text-center md:text-left relative text-3xl font-bold mb-10 pt-4 md:pt-0 md:w-max">Highlights</h2>
-          <ul class="flex flex-col gap-4 max-w-3xl mx-auto md:mx-0 w-full">
-            <li class="flex items-center"><span class="text-fun-pink mr-2 font-bold">▹</span><span class="text-left">Server-owned identity and authorization at both role and resource level</span></li>
-            <li class="flex items-center"><span class="text-fun-pink mr-2 font-bold">▹</span><span class="text-left">Explicit API contracts, state machines, domain invariants, and database constraints</span></li>
-            <li class="flex items-center"><span class="text-fun-pink mr-2 font-bold">▹</span><span class="text-left">Predictable failure handling for network errors, retries, pagination, and realtime reconnects</span></li>
-            <li class="flex items-center"><span class="text-fun-pink mr-2 font-bold">▹</span><span class="text-left">Root-cause debugging followed by regression tests</span></li>
-            <li class="flex items-center"><span class="text-fun-pink mr-2 font-bold">▹</span><span class="text-left">Honest project scope: locally verified production-like systems, not claimed live production traffic</span></li>
-          </ul>
-        </div>
-
-        <!-- CV section (moved from the former standalone CV page) -->
-        <div id="cv" class="bioframe flex flex-col text-left relative">
-          <span class="virus" style="width:22px;height:22px;left:6%;top:12%" aria-hidden="true"></span>
-          <span class="virus" style="width:14px;height:14px;left:70%;top:38%;animation-delay:3.2s" aria-hidden="true"></span>
-          <span class="virus" style="width:18px;height:18px;left:38%;top:74%;animation-delay:6.1s" aria-hidden="true"></span>
-          <h2 class="bio-corners max-w-sm md:max-w-max mx-auto md:mx-0 text-center md:text-left relative text-3xl font-bold mb-4 pt-4 md:pt-0 md:w-max">Albert Muratbaev — CV</h2>
-          <p class="text-fun-gray text-sm max-w-3xl mx-auto md:mx-0 w-full">Full-Stack &amp; Mobile Software Engineer · Tashkent, Uzbekistan · BSc Software Engineering, Turin Polytechnic University in Tashkent (expected 07/2028)</p>
-
-          <div class="mt-10 space-y-16 max-w-3xl mx-auto md:mx-0 w-full">
-            <section>
-              <h3 class="landingSectionTitle relative text-2xl font-bold mb-6 inline-block md:w-max">Professional Summary</h3>
-              <p class="text-fun-gray leading-relaxed">Software Engineer with expertise in Python backends (Django, FastAPI), cross-platform mobile development (Flutter, React Native), and modern web interfaces (React, TypeScript). Experienced in building end-to-end production-like architectures, REST APIs, real-time tracking (PostGIS, WebSockets, Redis), self-hosted infrastructure (Coolify, Docker, n8n, Supabase), and comprehensive technical documentation. Strong focus on API contracts, security (IDOR/BOLA prevention), automated testing, and developer experience.</p>
-            </section>
-
-            <section>
-              <h3 class="landingSectionTitle relative text-2xl font-bold mb-6 inline-block md:w-max">Experience</h3>
-              <div class="space-y-10">
-                <div>
-                  <div class="flex flex-wrap items-baseline justify-between gap-2">
-                    <h4 class="text-lg font-bold">Flutter Developer — Independent / Freelance</h4>
-                    <span class="text-fun-gray text-sm">01/2024 – 05/2026</span>
-                  </div>
-                  <ul class="mt-3 space-y-2 text-fun-gray text-sm leading-relaxed">
-                    <li class="flex"><span class="text-fun-pink mr-2 font-bold">▹</span><span>Shopping &amp; task manager apps with Flutter, Firebase, SQLite, Provider, and Material 3 design</span></li>
-                    <li class="flex"><span class="text-fun-pink mr-2 font-bold">▹</span><span>Weather forecast app: OpenWeather REST API integration, animated UI, optimized local database queries</span></li>
-                  </ul>
-                </div>
-                <div>
-                  <div class="flex flex-wrap items-baseline justify-between gap-2">
-                    <h4 class="text-lg font-bold">Mentor's Assistant — IT Center, Kungrad</h4>
-                    <span class="text-fun-gray text-sm">10/2023 – 05/2024</span>
-                  </div>
-                  <ul class="mt-3 space-y-2 text-fun-gray text-sm leading-relaxed">
-                    <li class="flex"><span class="text-fun-pink mr-2 font-bold">▹</span><span>Assisted students in frontend development (JavaScript, HTML/CSS) and basic Git/Markdown workflows</span></li>
-                    <li class="flex"><span class="text-fun-pink mr-2 font-bold">▹</span><span>Reviewed code, guided project deployments, supported independent student learning</span></li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section>
-              <h3 class="landingSectionTitle relative text-2xl font-bold mb-6 inline-block md:w-max">Technical Skills</h3>
-              <div class="space-y-4">
-                <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                  <span class="text-fun-pink text-sm font-bold uppercase tracking-widest sm:w-56 shrink-0">Languages</span>
-                  <span class="text-fun-gray text-sm">Python, TypeScript, JavaScript, Dart, SQL (PostgreSQL/PostGIS), HTML, CSS, Markdown, Bash, PowerShell</span>
-                </div>
-                <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                  <span class="text-fun-pink text-sm font-bold uppercase tracking-widest sm:w-56 shrink-0">Backend &amp; API</span>
-                  <span class="text-fun-gray text-sm">Django, Django REST Framework, FastAPI, Pydantic, SQLAlchemy Async, Alembic, SimpleJWT, REST, OpenAPI, WebSocket, Celery, Redis</span>
-                </div>
-                <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                  <span class="text-fun-pink text-sm font-bold uppercase tracking-widest sm:w-56 shrink-0">Mobile &amp; Web</span>
-                  <span class="text-fun-gray text-sm">Flutter (BLoC, Provider, Riverpod, Clean Architecture), React Native (Expo, Expo Router), React, Vite, TanStack Query, Zustand</span>
-                </div>
-                <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                  <span class="text-fun-pink text-sm font-bold uppercase tracking-widest sm:w-56 shrink-0">DevOps &amp; Self-Hosting</span>
-                  <span class="text-fun-gray text-sm">Docker, Docker Compose, Coolify, n8n, Supabase, MinIO/S3, Git/GitHub, CI/CD, Linux (Ubuntu/SSH)</span>
-                </div>
-                <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                  <span class="text-fun-pink text-sm font-bold uppercase tracking-widest sm:w-56 shrink-0">Testing &amp; Quality</span>
-                  <span class="text-fun-gray text-sm">pytest, Vitest, Flutter Unit/Widget/Integration tests, Ruff, mypy, ESLint, Prettier</span>
-                </div>
-                <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                  <span class="text-fun-pink text-sm font-bold uppercase tracking-widest sm:w-56 shrink-0">Documentation</span>
-                  <span class="text-fun-gray text-sm">Technical writing, README architecture, GitHub Wiki, OpenAPI specs, Mermaid.js</span>
-                </div>
-              </div>
-            </section>
-
-            <section>
-              <h3 class="landingSectionTitle relative text-2xl font-bold mb-6 inline-block md:w-max">Selected Projects</h3>
-              <div class="space-y-8">
-                <div>
-                  <a href="projects.html" class="text-lg font-bold hover:text-fun-pink transition-colors">Real Estate Marketplace MVP — Full-Stack Developer</a>
-                  <p class="text-fun-gray text-sm mt-2 leading-relaxed">Django REST Framework, React Native, Expo, PostgreSQL, PostGIS, Redis, Celery, MinIO, Docker. Versioned /api/v1 contract, phone/OTP auth with JWT rotation and blacklisting, PostGIS bounding-box &amp; radius search with GiST indexes, owner-scoped queries preventing IDOR/BOLA, presigned S3/MinIO uploads, RU/UZ/EN localization — verified by 153 backend tests and 11 mobile unit tests.</p>
-                </div>
-                <div>
-                  <a href="projects.html" class="text-lg font-bold hover:text-fun-pink transition-colors">Last-Mile Delivery Platform — Full-Stack / Mobile Developer</a>
-                  <p class="text-fun-gray text-sm mt-2 leading-relaxed">Flutter, BLoC, FastAPI, React, TypeScript, PostgreSQL, PostGIS, Redis, WebSocket, Docker. Monorepo with Flutter customer/courier apps and a React dispatcher dashboard, real-time authorized WebSocket GPS tracking with validation and throttling, Redis Pub/Sub distribution, deterministic fallback route &amp; ETA behind a provider adapter, and Markdown-based team documentation.</p>
-                </div>
-              </div>
-            </section>
-
-            <section>
-              <h3 class="landingSectionTitle relative text-2xl font-bold mb-6 inline-block md:w-max">Engineering Strengths</h3>
-              <ul class="space-y-3">
-                <li class="flex items-start"><span class="text-fun-pink mr-2 font-bold">▹</span><span class="text-fun-gray text-sm leading-relaxed"><strong class="text-white">Technical documentation &amp; Markdown:</strong> architecture docs, API contracts, deployment runbooks, Markdown-driven workflows (n8n, Coolify, GitHub)</span></li>
-                <li class="flex items-start"><span class="text-fun-pink mr-2 font-bold">▹</span><span class="text-fun-gray text-sm leading-relaxed"><strong class="text-white">Security &amp; reliability:</strong> JWT, RBAC, state machines, row locking, bounded retries, regression testing</span></li>
-                <li class="flex items-start"><span class="text-fun-pink mr-2 font-bold">▹</span><span class="text-fun-gray text-sm leading-relaxed"><strong class="text-white">Architecture:</strong> Clean Architecture, repository patterns, modular monoliths, server-owned contracts</span></li>
-              </ul>
-            </section>
-          </div>
-
-          <div class="relative w-full mt-12">
-            <a href="projects.html"><div class="max-w-sm md:max-w-2xl border border-fun-pink mx-auto text-center w-full whitespace-nowrap px-8 py-3 rounded-full text-fun-pink bg-fun-pink-darkerer hover:bg-fun-pink hover:text-white transition-colors cursor-pointer">See All Projects</div></a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- CTA -->
-      <div class="pt-36 relative w-full cta-section">
-        <img class="w-30 m-auto mb-2" src="static/doodles/lineBreak.svg" alt="">
-        <div class="pt-14 pb-40">
-          <h2 class="text-4xl md:text-5xl font-bold mb-10">Interested in Working Together?</h2>
-          <a href="mailto:maratbeknyazov@gmail.com"><span class="cursor-pointer font-bold whitespace-nowrap mt-6 px-8 py-3 text-white border-2 rounded-full border-white bg-bg hover:bg-fun-pink hover:border-fun-pink transition-colors">Get in Touch</span></a>
-        </div>
-        <img class="sqD min-w-[800px] bottom-[-100px] left-1/2 sm:bottom-[-150px] -translate-x-1/2 object-cover sm:min-w-[1100px]" style="z-index:-10" src="static/doodles/hero/fancyLines.svg" alt="">
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="flex flex-col w-screen px-5 py-10 border-t border-fun-pink-darker z-5 bg-bg">
-      <div class="w-full max-w-4xl m-auto grid grid-cols-2 sm:grid-cols-2 gap-8 justify-between items-start">
-        <div class="text-left mb-5 sm:mb-0">
-          <h4 class="uppercase text-fun-gray text-sm font-bold mb-6">Pages</h4>
-          <div class="grid gap-4">
-            <div><a href="index.html" class="hover:text-fun-pink transition-colors duration-200">Home</a></div>
-            <div><a href="projects.html" class="hover:text-fun-pink transition-colors duration-200">Projects</a></div>
-            <div><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="hover:text-fun-pink transition-colors duration-200">GitHub</a></div>
-          </div>
-        </div>
-        <div class="text-left mb-5 sm:mb-0">
-          <h4 class="uppercase text-fun-gray text-sm font-bold mb-6">Social</h4>
-          <div class="grid gap-4">
-            <div><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="items-center flex hover:text-fun-pink transition-colors duration-200"><span class="pr-2 -mb-1"><img alt="GitHub" loading="lazy" width="20" height="20" src="static/icons/github-f.svg"></span>GitHub</a></div>
-            <div><a href="https://www.instagram.com/albertmra_/" target="_blank" rel="noreferrer" class="items-center flex hover:text-fun-pink transition-colors duration-200"><span class="pr-2 -mb-1"><img alt="Instagram" loading="lazy" width="20" height="20" src="static/icons/instagram-grey-outline-22754.svg"></span>Instagram</a></div>
-            <div><a href="https://t.me/albertmra" target="_blank" rel="noreferrer" class="items-center flex hover:text-fun-pink transition-colors duration-200"><span class="pr-2 -mb-1"><img alt="Telegram" loading="lazy" width="20" height="20" src="static/icons/telegram-f.svg"></span>Telegram</a></div>
-            <div><a href="mailto:maratbeknyazov@gmail.com" class="items-center flex hover:text-fun-pink transition-colors duration-200"><span class="pr-2 -mb-1"><img alt="Email" loading="lazy" width="20" height="20" src="static/icons/mail-f.svg"></span>Email</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="max-w-4xl w-full m-auto mt-8 pt-8 sm:mt-4 sm:pt-4 text-center text-fun-gray border-t border-fun-pink-dark">
-        <div class="flex flex-col items-center justify-center space-y-4">
-          <div class="inline-flex items-center text-xs font-bold tracking-widest">Built with<div class="space-x-2 inline-flex items-center ml-3"><span class="hover:scale-110 transition-transform duration-200"><img src="gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" width="40" class="invert" title="NextJS" alt="NextJS"></span><span class="hover:scale-110 transition-transform duration-200"><img src="wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" width="26" title="TailwindCSS" alt="TailwindCSS"></span></div></div>
-          <div class="text-xs">© 2026 <a href="mailto:maratbeknyazov@gmail.com" class="text-fun-gray-light font-medium hover:text-fun-pink transition-colors duration-200">Albert Muratbaev</a>. All rights reserved.</div>
-        </div>
-      </div>
-    </footer>
+      <p class="mobile-menu__note">Tashkent, Uzbekistan · maratbeknyazov@gmail.com</p>
+    </div>
   </div>
-  <script>
-    /* Prototype-style ambient FX: scroll-reveal (IntersectionObserver),
-       consume-glow follows the pointer on project cards, tendril hives are
-       injected at section corners. Skipped under prefers-reduced-motion. */
-    (function () {
-      var d = document, root = d.documentElement;
-      var reduced = false;
-      try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-      if (reduced) return;
 
-      var TENDRILS = '<svg class="biohive" viewBox="0 0 220 170" fill="none" xmlns="http://www.w3.org/2000/svg"><g class="t t1"><path d="M0 170C6 118 18 96 10 58" stroke="var(--tm-accent)" stroke-width="3" stroke-linecap="round"/><path d="M10 58C14 40 10 30 16 14" stroke="var(--tm-accent)" stroke-width="2" stroke-linecap="round" opacity=".7"/><circle cx="16" cy="11" r="3.5" fill="var(--tm-accent)"/></g><g class="t t2"><path d="M0 170C16 132 26 118 22 78" stroke="var(--tm-accent)" stroke-width="2.5" stroke-linecap="round"/><path d="M22 78C28 60 22 52 30 36" stroke="var(--tm-accent)" stroke-width="2" stroke-linecap="round" opacity=".7"/><circle cx="31" cy="32" r="3" fill="var(--tm-accent)"/></g><g class="t t3"><path d="M0 170C26 146 34 136 38 104" stroke="var(--tm-accent)" stroke-width="2" stroke-linecap="round"/><circle cx="39" cy="100" r="2.5" fill="var(--tm-accent)"/></g></svg>';
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <span class="eyebrow hero__badge" data-i18n="hero.badge">Full-stack &amp; Mobile Developer</span>
+            <p class="hero__hello" data-i18n="hero.hello">Hey, I'm Albert</p>
+            <h1 class="display hero__title" data-i18n-html="hero.titleHtml">I enjoy <span class="grad-text glow">building</span> and <span class="grad-text glow">shipping</span> for the web &amp; mobile.</h1>
+            <p class="lead hero__lead" data-i18n="hero.lead">Full-stack &amp; mobile developer turning complex product flows into clear, reliable systems — REST APIs, cross-platform apps, realtime communication, and geospatial features.</p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#projects">
+                <span data-i18n="hero.ctaWork">Explore projects</span>
+                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
+              <a class="btn btn--ghost" href="#contact">
+                <span data-i18n="hero.ctaContact">Get in touch</span>
+                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="hero__meta">
+              <span class="hero__meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span data-i18n="hero.location">Tashkent, Uzbekistan</span>
+              </span>
+              <span class="hero__meta-item">
+                <span class="live-dot" aria-hidden="true"></span>
+                <span data-i18n="hero.focus">Open to thoughtful work</span>
+              </span>
+            </div>
+          </div>
 
-      function hive(corner) {
-        var s = d.createElement('div');
-        s.className = 'biohive br-' + corner;
-        s.setAttribute('aria-hidden', 'true');
-        s.innerHTML = TENDRILS;
-        return s;
-      }
+          <div class="hero__visual" aria-hidden="true">
+            <div class="scene">
+              <div class="scene__halo"></div>
+              <div class="ring ring--dashed"></div>
+              <div class="ring ring--solid"></div>
+              <div class="orbit orbit--slow"><span class="moon"></span></div>
+              <div class="planet-wrap">
+                <div class="planet">
+                  <div class="planet__bands"></div>
+                  <div class="planet__shade"></div>
+                  <div class="planet__rim"></div>
+                </div>
+                <div class="ring"></div>
+              </div>
+              <div class="orbit"><span class="moon"></span></div>
+              <span class="spark" style="top:18%;left:16%;animation-delay:0.4s"></span>
+              <span class="spark" style="top:72%;left:8%;animation-delay:1.8s"></span>
+              <span class="spark" style="top:32%;right:6%;animation-delay:2.6s"></span>
+              <span class="spark" style="bottom:12%;right:22%;animation-delay:1.1s"></span>
+              <div class="scene__badge scene__badge--one"><i></i><span data-i18n="hero.cardOne">Django · FastAPI</span></div>
+              <div class="scene__badge scene__badge--two"><i></i><span data-i18n="hero.cardTwo">React Native · Flutter</span></div>
+            </div>
+          </div>
+        </div>
 
-      function place(el, corner) {
-        if (!el) return;
-        el.style.position = 'relative';
-        el.appendChild(hive(corner));
-      }
+        <div class="stats" data-reveal>
+          <div class="stat">
+            <div class="stat__value">153</div>
+            <div class="stat__label" data-i18n="stats.tests">Backend tests</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value">11</div>
+            <div class="stat__label" data-i18n="stats.mobile">Mobile tests</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value">02</div>
+            <div class="stat__label" data-i18n="stats.systems">Flagship systems</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      function init() {
-        root.classList.add('biofx');
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow" data-i18n="about.eyebrow">About</span>
+          <h2 class="h2" data-i18n-html="about.titleHtml">Clear systems, <span class="grad-text">shipped end to end</span>.</h2>
+          <p class="lead" data-i18n="about.lead">I turn complex product flows into clear, reliable systems — from API contracts and authorization rules to mobile clients and realtime tracking.</p>
+        </div>
 
-        /* Scroll-reveal: hero, projects, toolbelt, highlights, CV, CTA. */
-        var sections = [];
-        var cand = d.querySelectorAll('.heroElem, #learnmore, .tip');
-        var seen = {};
-        Array.prototype.forEach.call(cand, function (el) {
-          var sec = el.closest('div.relative');
-          if (sec && !seen[sec.className]) { seen[sec.className] = 1; sections.push(sec); }
-        });
-        var cvBlock = d.getElementById('cv');
-        if (cvBlock) sections.push(cvBlock);
-        sections = sections.filter(function (s, i) { return sections.indexOf(s) === i; });
-        sections.forEach(function (s) { s.classList.add('bio-reveal'); });
+        <div class="about__grid">
+          <div class="about__body panel" data-reveal>
+            <p class="lead" data-i18n="about.body1">Software Engineer with expertise in Python backends (Django, FastAPI), cross-platform mobile development (Flutter, React Native), and modern web interfaces (React, TypeScript). Experienced in building end-to-end production-like architectures, REST APIs, real-time tracking (PostGIS, WebSockets, Redis), self-hosted infrastructure (Coolify, Docker, n8n, Supabase), and comprehensive technical documentation. Strong focus on API contracts, security (IDOR/BOLA prevention), automated testing, and developer experience.</p>
+            <p class="lead" data-i18n="about.body2">My main focus is secure authorization, explicit domain rules, geospatial features, resilient client behavior, and automated testing. I debug from a reproducible symptom to the root cause, then protect the result with tests.</p>
+            <blockquote class="about__quote"><span aria-hidden="true">“</span><span data-i18n="about.quote">Honest scope: locally verified production-like systems — not claimed live production traffic.</span><span aria-hidden="true">”</span></blockquote>
+          </div>
 
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (en) {
-              if (en.isIntersecting) { en.target.classList.add('bio-in'); io.unobserve(en.target); }
-            });
-          }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-          sections.forEach(function (s) { io.observe(s); });
-        } else {
-          sections.forEach(function (s) { s.classList.add('bio-in'); });
-        }
+          <aside class="profile panel" data-reveal style="--d:0.12s">
+            <div class="profile__head">
+              <span class="profile__orb" aria-hidden="true"></span>
+              <div>
+                <div class="profile__title" data-i18n="about.profile">Profile</div>
+                <div class="profile__sub" data-i18n="about.profileSub">Developer card</div>
+              </div>
+            </div>
+            <div class="profile__row">
+              <span class="profile__label" data-i18n="about.location">Location</span>
+              <span class="profile__value" data-i18n="about.locationValue">Tashkent, Uzbekistan</span>
+            </div>
+            <div class="profile__row">
+              <span class="profile__label" data-i18n="about.education">Education</span>
+              <span class="profile__value" data-i18n="about.educationValue">BSc Software Engineering, Turin Polytechnic University in Tashkent — expected 07/2028</span>
+            </div>
+            <div class="profile__row">
+              <span class="profile__label" data-i18n="about.focus">Focus</span>
+              <span class="profile__value" data-i18n="about.focusValue">Secure authorization · Domain rules · Geospatial features · Resilient clients</span>
+            </div>
+            <div class="profile__row">
+              <span class="profile__label" data-i18n="about.stack">Core stack</span>
+              <span class="profile__value" data-i18n="about.stackValue">Python · Django · FastAPI · React Native · Flutter · TypeScript</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-        /* Tendril hives at selected section corners. */
-        var hiveTargets = [
-          [d.querySelector('.heroElem'), 'tr'],
-          [d.getElementById('learnmore') ? d.getElementById('learnmore').parentElement : null, 'tl'],
-          [d.getElementById('cv'), 'bl'],
-          [d.getElementById('cv'), 'br'],
-          [d.querySelector('.cta-section'), 'tr'],
-          [d.querySelector('.cta-section'), 'bl']
-        ];
-        hiveTargets.forEach(function (pair) { place(pair[0], pair[1]); });
+    <!-- Principles -->
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow" data-i18n="hl.eyebrow">Principles</span>
+          <h2 class="h2" data-i18n="hl.title">How I work.</h2>
+          <p class="lead" data-i18n="hl.lead">Five principles that shape every backend, mobile app, and dashboard I touch.</p>
+        </div>
 
-        /* Consume-glow: the card border lights up around the pointer. */
-        d.querySelectorAll('.card-live').forEach(function (card) {
-          card.addEventListener('pointermove', function (e) {
-            var r = card.getBoundingClientRect();
-            card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-            card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-          });
-        });
+        <div class="cards">
+          <article class="hl-card" data-reveal>
+            <div class="hl-card__top">
+              <span class="hl-card__num">01</span>
+              <span class="hl-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            </div>
+            <h3 class="hl-card__title" data-i18n="hl.1t">Server-owned access</h3>
+            <p class="hl-card__text" data-i18n="hl.1x">Identity and authorization are enforced at both role and resource level.</p>
+          </article>
+          <article class="hl-card" data-reveal style="--d:0.06s">
+            <div class="hl-card__top">
+              <span class="hl-card__num">02</span>
+              <span class="hl-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>
+            </div>
+            <h3 class="hl-card__title" data-i18n="hl.2t">Explicit contracts</h3>
+            <p class="hl-card__text" data-i18n="hl.2x">API contracts, state machines, domain invariants, and database constraints.</p>
+          </article>
+          <article class="hl-card" data-reveal style="--d:0.12s">
+            <div class="hl-card__top">
+              <span class="hl-card__num">03</span>
+              <span class="hl-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+            </div>
+            <h3 class="hl-card__title" data-i18n="hl.3t">Predictable failure</h3>
+            <p class="hl-card__text" data-i18n="hl.3x">Network errors, retries, pagination, and realtime reconnects handled on purpose.</p>
+          </article>
+          <article class="hl-card" data-reveal>
+            <div class="hl-card__top">
+              <span class="hl-card__num">04</span>
+              <span class="hl-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></span>
+            </div>
+            <h3 class="hl-card__title" data-i18n="hl.4t">Root-cause debugging</h3>
+            <p class="hl-card__text" data-i18n="hl.4x">From a reproducible symptom to the root cause — then protected with regression tests.</p>
+          </article>
+          <article class="hl-card" data-reveal style="--d:0.08s">
+            <div class="hl-card__top">
+              <span class="hl-card__num">05</span>
+              <span class="hl-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/></svg></span>
+            </div>
+            <h3 class="hl-card__title" data-i18n="hl.5t">Honest scope</h3>
+            <p class="hl-card__text" data-i18n="hl.5x">Locally verified production-like systems, not claimed live production traffic.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        /* Reveal the theme hint once the page settles (covers slow sessions). */
-        window.setTimeout(function () {
-          try { if (localStorage.getItem('themeHintShown') !== '1') btnHintAdd(); } catch (e) {}
-        }, 2500);
-        function btnHintAdd() {
-          d.querySelectorAll('.theme-toggle').forEach(function (b) { b.classList.add('tt-hint'); });
-        }
-        d.addEventListener('click', function (e) {
-          if (e.target.closest && e.target.closest('.theme-toggle')) {
-            d.querySelectorAll('.theme-toggle').forEach(function (b) { b.classList.remove('tt-hint'); });
-          }
-        }
-        );
-      }
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow" data-i18n="projects.eyebrow">Selected work</span>
+          <h2 class="h2" data-i18n="projects.title">Systems built end to end.</h2>
+          <p class="lead" data-i18n="projects.lead">Two production-like platforms, verified locally with automated tests — from API contracts and authorization to mobile clients and realtime tracking.</p>
+        </div>
 
-      if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init);
-      else init();
-    })();
-  </script>
+        <div class="projects__grid">
+          <article class="project" data-reveal>
+            <div class="project__media">
+              <img src="static/projects/real-estate-marketplace.svg" width="1200" height="750" alt="Real Estate Marketplace MVP interface preview">
+              <span class="project__kind"><i aria-hidden="true"></i><span data-i18n="projects.p1kind">Marketplace · Geospatial</span></span>
+            </div>
+            <div class="project__body">
+              <div class="project__head">
+                <h3 class="project__title"><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">Real Estate Marketplace MVP</a></h3>
+                <a class="project__gh" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" aria-label="Real Estate Marketplace MVP on GitHub">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                </a>
+              </div>
+              <p class="project__text" data-i18n="projects.p1text">Production-like marketplace with a Django/PostGIS backend and an Expo React Native client: OTP auth with JWT rotation, IDOR/BOLA protection, bounding-box search, and presigned uploads. Verified by 153 backend and 11 mobile tests.</p>
+              <ul class="tags">
+                <li class="tag">Django</li>
+                <li class="tag">PostGIS</li>
+                <li class="tag">Expo</li>
+                <li class="tag">JWT</li>
+                <li class="tag">Docker</li>
+              </ul>
+              <div class="project__foot">
+                <a class="text-link" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">
+                  <span data-i18n="projects.open">View on GitHub</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" data-reveal style="--d:0.08s">
+            <div class="project__media">
+              <img src="static/projects/last-mile-delivery.svg" width="1200" height="750" alt="Last-mile Delivery Platform interface preview">
+              <span class="project__kind"><i aria-hidden="true"></i><span data-i18n="projects.p2kind">Logistics · Realtime</span></span>
+            </div>
+            <div class="project__body">
+              <div class="project__head">
+                <h3 class="project__title"><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">Last-mile Delivery Platform</a></h3>
+                <a class="project__gh" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" aria-label="Last-mile Delivery Platform on GitHub">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                </a>
+              </div>
+              <p class="project__text" data-i18n="projects.p2text">Full-stack delivery workflow with Flutter apps, a FastAPI backend, and a React dispatcher dashboard: order state machine, authorized WebSocket GPS tracking, Redis Pub/Sub, server-side ETA, and PostGIS queries.</p>
+              <ul class="tags">
+                <li class="tag">FastAPI</li>
+                <li class="tag">Flutter</li>
+                <li class="tag">WebSocket</li>
+                <li class="tag">Redis</li>
+                <li class="tag">PostGIS</li>
+              </ul>
+              <div class="project__foot">
+                <a class="text-link" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">
+                  <span data-i18n="projects.open">View on GitHub</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project project--more" data-reveal>
+            <div class="project__body">
+              <h3 class="project__title"><a href="https://github.com/maratbeknyazov/?tab=repositories" target="_blank" rel="noreferrer" data-i18n="projects.moreTitle">More on GitHub</a></h3>
+              <p class="project__text" data-i18n="projects.moreText">Explore the full collection of repositories — tooling, experiments, and production-like systems.</p>
+            </div>
+            <a class="btn btn--ghost" href="https://github.com/maratbeknyazov/?tab=repositories" target="_blank" rel="noreferrer">
+              <span data-i18n="projects.moreLink">Open GitHub</span>
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+          </article>
+        </div>
+
+        <div class="projects__cta" data-reveal>
+          <a class="btn btn--ghost" href="projects.html">
+            <span data-i18n="projects.viewAll">View all projects</span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow" data-i18n="skills.eyebrow">Toolbelt</span>
+          <h2 class="h2" data-i18n="skills.title">The stack behind the systems.</h2>
+          <p class="lead" data-i18n="skills.lead">Languages, frameworks, infrastructure, and quality tooling I use to ship reliable products.</p>
+        </div>
+
+        <div class="skill-panel panel" data-reveal>
+          <div class="skill-group">
+            <div class="skill-group__head">
+              <span class="skill-group__title" data-i18n="skills.g1">Languages</span>
+              <span class="skill-group__line" aria-hidden="true"></span>
+              <span class="skill-group__count">06</span>
+            </div>
+            <div class="tools">
+              <div class="tool" data-i18n-title="skills.tip.python"><img src="gh/devicons/devicon/icons/python/python-original.svg" width="30" height="30" alt="Python" loading="lazy"><span class="tool__name">Python</span><span class="tool__tip" data-i18n="skills.tip.python">Primary language</span></div>
+              <div class="tool" data-i18n-title="skills.tip.typescript"><img src="gh/devicons/devicon/icons/typescript/typescript-original.svg" width="30" height="30" alt="TypeScript" loading="lazy"><span class="tool__name">TypeScript</span><span class="tool__tip" data-i18n="skills.tip.typescript">Core stack</span></div>
+              <div class="tool" data-i18n-title="skills.tip.javascript"><img src="gh/devicons/devicon/icons/javascript/javascript-original.svg" width="30" height="30" alt="JavaScript" loading="lazy"><span class="tool__name">JavaScript</span><span class="tool__tip" data-i18n="skills.tip.javascript">Frontend &amp; scripts</span></div>
+              <div class="tool" data-i18n-title="skills.tip.dart"><img src="gh/devicons/devicon/icons/dart/dart-original.svg" width="30" height="30" alt="Dart" loading="lazy"><span class="tool__name">Dart</span><span class="tool__tip" data-i18n="skills.tip.dart">Flutter apps</span></div>
+              <div class="tool" data-i18n-title="skills.tip.html"><img src="gh/devicons/devicon/icons/html5/html5-original.svg" width="30" height="30" alt="HTML" loading="lazy"><span class="tool__name">HTML</span><span class="tool__tip" data-i18n="skills.tip.html">Markup</span></div>
+              <div class="tool" data-i18n-title="skills.tip.css"><img src="gh/devicons/devicon/icons/css3/css3-original.svg" width="30" height="30" alt="CSS" loading="lazy"><span class="tool__name">CSS</span><span class="tool__tip" data-i18n="skills.tip.css">Styling</span></div>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group__head">
+              <span class="skill-group__title" data-i18n="skills.g2">Backend &amp; API</span>
+              <span class="skill-group__line" aria-hidden="true"></span>
+              <span class="skill-group__count">06</span>
+            </div>
+            <div class="tools">
+              <div class="tool tool--bright" data-i18n-title="skills.tip.django"><img src="gh/devicons/devicon/icons/django/django-plain.svg" width="30" height="30" alt="Django" loading="lazy"><span class="tool__name">Django</span><span class="tool__tip" data-i18n="skills.tip.django">Primary framework</span></div>
+              <div class="tool" data-i18n-title="skills.tip.fastapi"><img src="gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="30" height="30" alt="FastAPI" loading="lazy"><span class="tool__name">FastAPI</span><span class="tool__tip" data-i18n="skills.tip.fastapi">Async APIs</span></div>
+              <div class="tool" data-i18n-title="skills.tip.celery"><img src="gh/devicons/devicon/icons/celery/celery-original.svg" width="30" height="30" alt="Celery" loading="lazy"><span class="tool__name">Celery</span><span class="tool__tip" data-i18n="skills.tip.celery">Background jobs</span></div>
+              <div class="tool" data-i18n-title="skills.tip.redis"><img src="gh/devicons/devicon/icons/redis/redis-original.svg" width="30" height="30" alt="Redis" loading="lazy"><span class="tool__name">Redis</span><span class="tool__tip" data-i18n="skills.tip.redis">Cache &amp; Pub/Sub</span></div>
+              <div class="tool" data-i18n-title="skills.tip.postgresql"><img src="gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="30" height="30" alt="PostgreSQL" loading="lazy"><span class="tool__name">PostgreSQL</span><span class="tool__tip" data-i18n="skills.tip.postgresql">PostGIS, geo queries</span></div>
+              <div class="tool" data-i18n-title="skills.tip.sqlite"><img src="gh/devicons/devicon/icons/sqlite/sqlite-original.svg" width="30" height="30" alt="SQLite" loading="lazy"><span class="tool__name">SQLite</span><span class="tool__tip" data-i18n="skills.tip.sqlite">Local databases</span></div>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group__head">
+              <span class="skill-group__title" data-i18n="skills.g3">Mobile &amp; Web</span>
+              <span class="skill-group__line" aria-hidden="true"></span>
+              <span class="skill-group__count">06</span>
+            </div>
+            <div class="tools">
+              <div class="tool" data-i18n-title="skills.tip.reactnative"><img src="gh/devicons/devicon/icons/reactnative/reactnative-original.svg" width="30" height="30" alt="React Native" loading="lazy"><span class="tool__name">React Native</span><span class="tool__tip" data-i18n="skills.tip.reactnative">Cross-platform apps</span></div>
+              <div class="tool" data-i18n-title="skills.tip.expo"><img src="gh/devicons/devicon/icons/expo/expo-original.svg" width="30" height="30" alt="Expo" loading="lazy"><span class="tool__name">Expo</span><span class="tool__tip" data-i18n="skills.tip.expo">Mobile build &amp; routing</span></div>
+              <div class="tool" data-i18n-title="skills.tip.flutter"><img src="gh/devicons/devicon/icons/flutter/flutter-original.svg" width="30" height="30" alt="Flutter" loading="lazy"><span class="tool__name">Flutter</span><span class="tool__tip" data-i18n="skills.tip.flutter">BLoC, Clean Architecture</span></div>
+              <div class="tool" data-i18n-title="skills.tip.react"><img src="gh/devicons/devicon/icons/react/react-original.svg" width="30" height="30" alt="React" loading="lazy"><span class="tool__name">React</span><span class="tool__tip" data-i18n="skills.tip.react">Dashboards</span></div>
+              <div class="tool" data-i18n-title="skills.tip.vite"><img src="gh/devicons/devicon/icons/vite/vite-original.svg" width="30" height="30" alt="Vite" loading="lazy"><span class="tool__name">Vite</span><span class="tool__tip" data-i18n="skills.tip.vite">Frontend tooling</span></div>
+              <div class="tool" data-i18n-title="skills.tip.tailwind"><img src="gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="30" height="30" alt="Tailwind CSS" loading="lazy"><span class="tool__name">Tailwind</span><span class="tool__tip" data-i18n="skills.tip.tailwind">Utility styling</span></div>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group__head">
+              <span class="skill-group__title" data-i18n="skills.g4">Infrastructure</span>
+              <span class="skill-group__line" aria-hidden="true"></span>
+              <span class="skill-group__count">06</span>
+            </div>
+            <div class="tools">
+              <div class="tool" data-i18n-title="skills.tip.docker"><img src="gh/devicons/devicon/icons/docker/docker-original.svg" width="30" height="30" alt="Docker" loading="lazy"><span class="tool__name">Docker</span><span class="tool__tip" data-i18n="skills.tip.docker">Containers &amp; Compose</span></div>
+              <div class="tool" data-i18n-title="skills.tip.linux"><img src="gh/devicons/devicon/icons/linux/linux-original.svg" width="30" height="30" alt="Linux" loading="lazy"><span class="tool__name">Linux</span><span class="tool__tip" data-i18n="skills.tip.linux">Ubuntu, SSH</span></div>
+              <div class="tool tool--invert" data-i18n-title="skills.tip.github"><img src="gh/devicons/devicon/icons/github/github-original.svg" width="30" height="30" alt="GitHub" loading="lazy"><span class="tool__name">GitHub</span><span class="tool__tip" data-i18n="skills.tip.github">Git hosting &amp; wikis</span></div>
+              <div class="tool" data-i18n-title="skills.tip.actions"><img src="gh/devicons/devicon/icons/githubactions/githubactions-original.svg" width="30" height="30" alt="GitHub Actions" loading="lazy"><span class="tool__name">Actions</span><span class="tool__tip" data-i18n="skills.tip.actions">CI/CD pipelines</span></div>
+              <div class="tool" data-i18n-title="skills.tip.supabase"><img src="gh/devicons/devicon/icons/supabase/supabase-original.svg" width="30" height="30" alt="Supabase" loading="lazy"><span class="tool__name">Supabase</span><span class="tool__tip" data-i18n="skills.tip.supabase">BaaS &amp; Postgres</span></div>
+              <div class="tool" data-i18n-title="skills.tip.minio"><img src="gh/devicons/devicon/icons/minio/minio-original.svg" width="30" height="30" alt="MinIO" loading="lazy"><span class="tool__name">MinIO</span><span class="tool__tip" data-i18n="skills.tip.minio">S3-compatible storage</span></div>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group__head">
+              <span class="skill-group__title" data-i18n="skills.g5">Automation &amp; Quality</span>
+              <span class="skill-group__line" aria-hidden="true"></span>
+              <span class="skill-group__count">06</span>
+            </div>
+            <div class="tools">
+              <div class="tool" data-i18n-title="skills.tip.n8n"><img src="gh/devicons/devicon/icons/n8n/n8n-original.svg" width="30" height="30" alt="n8n" loading="lazy"><span class="tool__name">n8n</span><span class="tool__tip" data-i18n="skills.tip.n8n">Workflow automation</span></div>
+              <div class="tool" data-i18n-title="skills.tip.coolify"><img src="gh/devicons/devicon/icons/coolify/coolify-original.svg" width="30" height="30" alt="Coolify" loading="lazy"><span class="tool__name">Coolify</span><span class="tool__tip" data-i18n="skills.tip.coolify">Self-hosted PaaS</span></div>
+              <div class="tool" data-i18n-title="skills.tip.pytest"><img src="gh/devicons/devicon/icons/pytest/pytest-original.svg" width="30" height="30" alt="pytest" loading="lazy"><span class="tool__name">pytest</span><span class="tool__tip" data-i18n="skills.tip.pytest">153+ tests across projects</span></div>
+              <div class="tool" data-i18n-title="skills.tip.vitest"><img src="gh/devicons/devicon/icons/vitest/vitest-original.svg" width="30" height="30" alt="Vitest" loading="lazy"><span class="tool__name">Vitest</span><span class="tool__tip" data-i18n="skills.tip.vitest">Frontend tests</span></div>
+              <div class="tool" data-i18n-title="skills.tip.markdown"><img src="gh/devicons/devicon/icons/markdown/markdown-original.svg" width="30" height="30" alt="Markdown" loading="lazy"><span class="tool__name">Markdown</span><span class="tool__tip" data-i18n="skills.tip.markdown">Docs &amp; wikis</span></div>
+              <div class="tool" data-i18n-title="skills.tip.bash"><img src="gh/devicons/devicon/icons/bash/bash-original.svg" width="30" height="30" alt="Bash" loading="lazy"><span class="tool__name">Bash</span><span class="tool__tip" data-i18n="skills.tip.bash">Scripts &amp; deploys</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey / CV -->
+    <section class="section" id="journey">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow" data-i18n="journey.eyebrow">Career &amp; journey</span>
+          <h2 class="h2" data-i18n="journey.title">Albert Muratbaev — CV</h2>
+          <p class="lead" data-i18n="journey.lead">Full-Stack &amp; Mobile Software Engineer · Tashkent, Uzbekistan · BSc Software Engineering, Turin Polytechnic University in Tashkent (expected 07/2028)</p>
+        </div>
+
+        <div class="journey__grid">
+          <div data-reveal>
+            <div class="cv-block">
+              <h3 class="cv-title" data-i18n="journey.summary">Professional summary</h3>
+              <p class="cv-text" data-i18n="journey.summaryText">Software Engineer with expertise in Python backends (Django, FastAPI), cross-platform mobile development (Flutter, React Native), and modern web interfaces (React, TypeScript). Experienced in building end-to-end production-like architectures, REST APIs, real-time tracking (PostGIS, WebSockets, Redis), self-hosted infrastructure (Coolify, Docker, n8n, Supabase), and comprehensive technical documentation. Strong focus on API contracts, security (IDOR/BOLA prevention), automated testing, and developer experience.</p>
+            </div>
+
+            <div class="cv-block">
+              <h3 class="cv-title" data-i18n="journey.exp">Experience</h3>
+              <div class="timeline">
+                <div class="tl-item">
+                  <div class="tl-role" data-i18n="journey.role1">Flutter Developer</div>
+                  <div class="tl-org" data-i18n="journey.org1">Independent / Freelance</div>
+                  <div class="tl-date" data-i18n="journey.date1">01/2024 – 05/2026</div>
+                  <ul class="bullets">
+                    <li data-i18n="journey.b1a">Shopping &amp; task manager apps with Flutter, Firebase, SQLite, Provider, and Material 3 design</li>
+                    <li data-i18n="journey.b1b">Weather forecast app: OpenWeather REST API integration, animated UI, optimized local database queries</li>
+                  </ul>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-role" data-i18n="journey.role2">Mentor's Assistant</div>
+                  <div class="tl-org" data-i18n="journey.org2">IT Center, Kungrad</div>
+                  <div class="tl-date" data-i18n="journey.date2">10/2023 – 05/2024</div>
+                  <ul class="bullets">
+                    <li data-i18n="journey.b2a">Assisted students in frontend development (JavaScript, HTML/CSS) and basic Git/Markdown workflows</li>
+                    <li data-i18n="journey.b2b">Reviewed code, guided project deployments, supported independent student learning</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="cv-block">
+              <h3 class="cv-title" data-i18n="journey.strengths">Engineering strengths</h3>
+              <ul class="strengths">
+                <li><strong data-i18n="journey.st1">Technical documentation &amp; Markdown:</strong> <span data-i18n="journey.st1x">architecture docs, API contracts, deployment runbooks, Markdown-driven workflows (n8n, Coolify, GitHub)</span></li>
+                <li><strong data-i18n="journey.st2">Security &amp; reliability:</strong> <span data-i18n="journey.st2x">JWT, RBAC, state machines, row locking, bounded retries, regression testing</span></li>
+                <li><strong data-i18n="journey.st3">Architecture:</strong> <span data-i18n="journey.st3x">Clean Architecture, repository patterns, modular monoliths, server-owned contracts</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div data-reveal style="--d:0.1s">
+            <div class="cv-block">
+              <h3 class="cv-title" data-i18n="journey.skills">Technical skills</h3>
+              <div class="cv-rows">
+                <div class="cv-row">
+                  <span class="cv-label" data-i18n="journey.l1">Languages</span>
+                  <span class="cv-value" data-i18n="journey.v1">Python, TypeScript, JavaScript, Dart, SQL (PostgreSQL/PostGIS), HTML, CSS, Markdown, Bash, PowerShell</span>
+                </div>
+                <div class="cv-row">
+                  <span class="cv-label" data-i18n="journey.l2">Backend &amp; API</span>
+                  <span class="cv-value" data-i18n="journey.v2">Django, Django REST Framework, FastAPI, Pydantic, SQLAlchemy Async, Alembic, SimpleJWT, REST, OpenAPI, WebSocket, Celery, Redis</span>
+                </div>
+                <div class="cv-row">
+                  <span class="cv-label" data-i18n="journey.l3">Mobile &amp; Web</span>
+                  <span class="cv-value" data-i18n="journey.v3">Flutter (BLoC, Provider, Riverpod, Clean Architecture), React Native (Expo, Expo Router), React, Vite, TanStack Query, Zustand</span>
+                </div>
+                <div class="cv-row">
+                  <span class="cv-label" data-i18n="journey.l4">DevOps &amp; Self-Hosting</span>
+                  <span class="cv-value" data-i18n="journey.v4">Docker, Docker Compose, Coolify, n8n, Supabase, MinIO/S3, Git/GitHub, CI/CD, Linux (Ubuntu/SSH)</span>
+                </div>
+                <div class="cv-row">
+                  <span class="cv-label" data-i18n="journey.l5">Testing &amp; Quality</span>
+                  <span class="cv-value" data-i18n="journey.v5">pytest, Vitest, Flutter Unit/Widget/Integration tests, Ruff, mypy, ESLint, Prettier</span>
+                </div>
+                <div class="cv-row">
+                  <span class="cv-label" data-i18n="journey.l6">Documentation</span>
+                  <span class="cv-value" data-i18n="journey.v6">Technical writing, README architecture, GitHub Wiki, OpenAPI specs, Mermaid.js</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cv-block">
+              <h3 class="cv-title" data-i18n="journey.selected">Selected projects</h3>
+              <div class="detail">
+                <h4 class="detail__title"><a href="projects.html" data-i18n="journey.p1">Real Estate Marketplace MVP — Full-Stack Developer</a></h4>
+                <p class="detail__text" data-i18n="journey.p1text">Django REST Framework, React Native, Expo, PostgreSQL, PostGIS, Redis, Celery, MinIO, Docker. Versioned /api/v1 contract, phone/OTP auth with JWT rotation and blacklisting, PostGIS bounding-box &amp; radius search with GiST indexes, owner-scoped queries preventing IDOR/BOLA, presigned S3/MinIO uploads, RU/UZ/EN localization — verified by 153 backend tests and 11 mobile unit tests.</p>
+              </div>
+              <div class="detail">
+                <h4 class="detail__title"><a href="projects.html" data-i18n="journey.p2">Last-Mile Delivery Platform — Full-Stack / Mobile Developer</a></h4>
+                <p class="detail__text" data-i18n="journey.p2text">Flutter, BLoC, FastAPI, React, TypeScript, PostgreSQL, PostGIS, Redis, WebSocket, Docker. Monorepo with Flutter customer/courier apps and a React dispatcher dashboard, real-time authorized WebSocket GPS tracking with validation and throttling, Redis Pub/Sub distribution, deterministic fallback route &amp; ETA behind a provider adapter, and Markdown-based team documentation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="contact__panel panel" data-reveal>
+          <div class="contact__grid">
+            <div>
+              <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+              <h2 class="h2 contact__title" style="margin-top:16px" data-i18n="contact.title">Let's build something reliable.</h2>
+              <p class="lead contact__lead" data-i18n="contact.lead">Have a product flow that needs clear systems? I'm one message away.</p>
+              <div class="contact__actions">
+                <a class="btn btn--primary" href="mailto:maratbeknyazov@gmail.com">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                  <span data-i18n="contact.email">Send an email</span>
+                </a>
+                <button class="copy-btn" type="button" data-copy="maratbeknyazov@gmail.com">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  <span data-copy-label data-i18n="contact.copy">Copy address</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="contact__cards">
+              <a class="contact-card" href="mailto:maratbeknyazov@gmail.com">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.emailLabel">Email</span>
+                  <span class="contact-card__handle">maratbeknyazov@gmail.com</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+              <a class="contact-card" href="https://t.me/albertmra" target="_blank" rel="noreferrer">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.458 0 .66-.21.916-.457l2.199-2.138 4.574 3.379c.843.465 1.448.226 1.658-.782l2.998-14.128c.308-1.233-.473-1.794-1.549-1.313z"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.tg">Telegram</span>
+                  <span class="contact-card__handle">@albertmra</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+              <a class="contact-card" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.gh">GitHub</span>
+                  <span class="contact-card__handle">@maratbeknyazov</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+              <a class="contact-card" href="https://www.linkedin.com/in/albert-muratbaev-a39ba4373/" target="_blank" rel="noreferrer">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.li">LinkedIn</span>
+                  <span class="contact-card__handle">Albert Muratbaev</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+              <a class="contact-card" href="https://www.instagram.com/albertmra_/" target="_blank" rel="noreferrer">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.ig">Instagram</span>
+                  <span class="contact-card__handle">@albertmra_</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand" href="index.html" aria-label="albertmra — home">
+            <span class="brand__mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <ellipse cx="16" cy="17" rx="13" ry="5.5" stroke="#67e8f9" stroke-width="1.1" opacity=".55" transform="rotate(-24 16 17)"/>
+                <circle cx="16" cy="16" r="6.2" fill="#22d3ee" opacity=".16"/>
+                <circle cx="16" cy="16" r="3.4" fill="#22d3ee"/>
+                <circle cx="16" cy="16" r="5.7" stroke="#8b5cf6" stroke-width="1" opacity=".85"/>
+                <circle cx="26.4" cy="10.6" r="1.5" fill="#f472b6"/>
+              </svg>
+            </span>
+            <span class="brand__name" aria-hidden="true"><span>a</span><span>l</span><span>b</span><span>e</span><span>r</span><span>t</span><span>m</span><span>r</span><span>a</span></span>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Full-stack &amp; mobile developer building clear, reliable systems for the web and mobile.</p>
+          <div class="footer__socials">
+            <a class="social" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            </a>
+            <a class="social" href="https://t.me/albertmra" target="_blank" rel="noreferrer" aria-label="Telegram">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.458 0 .66-.21.916-.457l2.199-2.138 4.574 3.379c.843.465 1.448.226 1.658-.782l2.998-14.128c.308-1.233-.473-1.794-1.549-1.313z"/></svg>
+            </a>
+            <a class="social" href="https://www.linkedin.com/in/albert-muratbaev-a39ba4373/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a class="social" href="https://www.instagram.com/albertmra_/" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a class="social" href="mailto:maratbeknyazov@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title" data-i18n="footer.pages">Pages</h4>
+          <div class="footer__links">
+            <a class="footer__link" href="#top" data-i18n="nav.home">Home</a>
+            <a class="footer__link" href="#about" data-i18n="nav.about">About</a>
+            <a class="footer__link" href="#skills" data-i18n="nav.skills">Skills</a>
+            <a class="footer__link" href="projects.html" data-i18n="nav.projects">Projects</a>
+            <a class="footer__link" href="#contact" data-i18n="nav.contact">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title" data-i18n="footer.connect">Connect</h4>
+          <div class="footer__links">
+            <a class="footer__link" href="mailto:maratbeknyazov@gmail.com">maratbeknyazov@gmail.com</a>
+            <a class="footer__link" href="https://t.me/albertmra" target="_blank" rel="noreferrer">Telegram</a>
+            <a class="footer__link" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="footer__link" href="https://www.linkedin.com/in/albert-muratbaev-a39ba4373/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span data-i18n="footer.built">Designed in orbit</span>
+        <span data-i18n="footer.rights">© 2026 Albert Muratbaev. All rights reserved.</span>
+        <a class="to-top" href="#top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+          <span data-i18n="footer.toTop">Back to top</span>
+        </a>
+      </div>
+
+      <span class="footer__word" aria-hidden="true">albertmra</span>
+    </div>
+  </footer>
+
+  <script src="static/space.js"></script>
 </body>
 </html>

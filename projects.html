@@ -8,367 +8,333 @@
   <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
   <link rel="manifest" href="static/favicon/site.webmanifest">
-  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)" href="static/favicon/favicon-red.svg" id="favLink1">
-  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: light)" href="static/favicon/favicon-blue.svg" id="favLink2">
+  <link rel="icon" type="image/svg+xml" href="static/favicon/favicon-red.svg">
   <meta name="title" content="Projects — Albert Muratbaev">
   <meta name="description" content="Featured projects by Albert Muratbaev — full-stack and mobile systems built with Django, FastAPI, React Native, and Flutter.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects — Albert Muratbaev">
   <meta property="og:description" content="Featured projects by Albert Muratbaev — full-stack and mobile systems built with Django, FastAPI, React Native, and Flutter.">
-  <meta property="twitter:card" content="summary">
-  <meta property="twitter:title" content="Projects — Albert Muratbaev">
-  <meta property="twitter:description" content="Featured projects by Albert Muratbaev — full-stack and mobile systems built with Django, FastAPI, React Native, and Flutter.">
-  <link rel="icon" type="image/svg+xml" href="static/favicon/favicon-red.svg" id="themeFavicon">
-  <link rel="preload" as="image" href="static/favicon/favicon-blue.svg">
-  <meta name="theme-color" id="metaThemeColor" content="#0a0a0a">
-  <link rel="preload" as="image" href="static/logos/logo_no_text.svg">
-  <link rel="preload" as="image" href="static/doodles/hero/code.svg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Projects — Albert Muratbaev">
+  <meta name="twitter:description" content="Featured projects by Albert Muratbaev — full-stack and mobile systems built with Django, FastAPI, React Native, and Flutter.">
+  <meta name="theme-color" content="#04050c">
   <link rel="preload" as="image" href="static/projects/real-estate-marketplace.svg">
   <link rel="preload" as="image" href="static/projects/last-mile-delivery.svg">
-  <link rel="stylesheet" href="_next/static/chunks/e24ef282d7aafded.css">
-  <link rel="stylesheet" href="static/brand.css">
+  <link rel="stylesheet" href="static/space.css">
   <script>
-    /* Theme boot before first paint: applies html.theme-red, syncs favicon and
-       meta theme-color. Default: Deadpool Red. All paths are relative so it
-       works on GitHub Pages project sites. */
     (function () {
-      var theme = 'red';
-      try { if (localStorage.getItem('theme') === 'blue') theme = 'blue'; } catch (e) {}
-      var root = document.documentElement;
-      if (theme === 'red') root.classList.add('theme-red');
-      var fav = document.getElementById('themeFavicon');
-      if (fav) fav.href = 'static/favicon/favicon-' + (theme === 'red' ? 'red' : 'blue') + '.svg';
-      var meta = document.getElementById('metaThemeColor');
-      if (meta) meta.setAttribute('content', theme === 'red' ? '#0a0a0a' : '#000a1f');
+      try {
+        var saved = localStorage.getItem('albert.lang');
+        if (saved === 'en' || saved === 'ru') {
+          document.documentElement.lang = saved;
+          document.documentElement.setAttribute('data-lang', saved);
+        }
+      } catch (e) {}
     })();
   </script>
 </head>
-<body>
-  <div class="w-full m-auto flex flex-col items-center justify-center min-h-screen opening-box-animate-paddin text-white overflow-hidden md:overflow-visible" style="max-width:1200px">
-    <main class="p-5 w-full flex-1 text-center">
+<body data-page="projects">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="starfield" aria-hidden="true"></canvas>
 
-      <!-- Desktop navigation -->
-      <div class="hidden sm:block z-100">
-        <nav class="flex items-center justify-between">
-          <li class="list-none font-bold text-lg cursor-pointer">
-            <a href="index.html">
-              <span class="font-black text-xl flex items-center">
-                <span class="logo3d-wrap"><img class="mr-2 logo3d transform hover:rotate-360 hover:scale-75 transition-transform duration-500" src="static/logos/logo_no_text.svg" width="60" alt="albertmra logo"></span>
-                <span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">l</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">b</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">e</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">t</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">m</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span>
-              </span>
-            </a>
-          </li>
-          <ul class="flex items-center space-x-10">
-            <li class="list-none text-white opacity-40 hover:opacity-100 transition-opacity"><a href="index.html">Home</a></li>
-            <li class="list-none text-white opacity-40 hover:opacity-100 transition-opacity"><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">GitHub</a></li>
-            <li class="list-none text-white opacity-100"><a href="projects.html">Projects</a></li>
-            <li class="list-none">
-              <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Theme: Deadpool Red — activate Original Blue" title="Switch theme"><span class="tt-face tt-face-red" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 24C14 12 50 12 56 24C57 26 57 38 56 40C50 52 14 52 8 40C7 38 7 26 8 24Z" fill="#e50914"/><circle cx="24" cy="34" r="5" fill="#0a0a0a"/><circle cx="40" cy="34" r="5" fill="#0a0a0a"/><path d="M14 22C22 15 42 15 50 22" stroke="#c29b38" stroke-width="4" stroke-linecap="round"/></svg></span><span class="tt-face tt-face-blue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 6L56 14V32C56 47 45 55 32 60C19 55 8 47 8 32V14Z" fill="#00c7ff"/><circle cx="32" cy="33" r="7" fill="#000a1f"/></svg></span><span class="tt-dots" aria-hidden="true"><span class="tt-dot tt-dot-red"></span><span class="tt-dot tt-dot-blue"></span></span><span class="tt-label">Red</span></button>
-            </li>
-          </ul>
-        </nav>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="brand" href="index.html" aria-label="albertmra — home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <ellipse cx="16" cy="17" rx="13" ry="5.5" stroke="#67e8f9" stroke-width="1.1" opacity=".55" transform="rotate(-24 16 17)"/>
+            <circle cx="16" cy="16" r="6.2" fill="#22d3ee" opacity=".16"/>
+            <circle cx="16" cy="16" r="3.4" fill="#22d3ee"/>
+            <circle cx="16" cy="16" r="5.7" stroke="#8b5cf6" stroke-width="1" opacity=".85"/>
+            <circle cx="26.4" cy="10.6" r="1.5" fill="#f472b6"/>
+          </svg>
+        </span>
+        <span class="brand__name" aria-hidden="true"><span>a</span><span>l</span><span>b</span><span>e</span><span>r</span><span>t</span><span>m</span><span>r</span><span>a</span></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a class="nav__link" href="index.html" data-i18n="nav.home">Home</a>
+        <a class="nav__link" href="index.html#about" data-i18n="nav.about">About</a>
+        <a class="nav__link is-active" href="projects.html" data-i18n="nav.projects">Projects</a>
+        <a class="nav__link" href="index.html#skills" data-i18n="nav.skills">Skills</a>
+        <a class="nav__link" href="index.html#journey" data-i18n="nav.journey">Journey</a>
+        <a class="nav__link" href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="nav__actions">
+        <div class="lang" role="group" aria-label="Language" data-i18n-aria="nav.lang">
+          <button class="lang__btn" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang__btn" type="button" data-lang="ru" aria-pressed="false">RU</button>
+        </div>
+        <a class="nav__cta" href="index.html#contact">
+          <span data-i18n="nav.cta">Let's talk</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu" data-i18n-aria="nav.menu">
+          <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18"/><path d="M3 12h18"/><path d="M3 17h18"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg>
+        </button>
       </div>
+    </div>
+  </header>
 
-      <!-- Mobile navigation -->
-      <div class="-m-5 block sm:hidden z-100">
-        <nav>
-          <div class="w-full justify-between flex items-center false p-5" style="z-index:101">
-            <li class="list-none font-bold text-lg">
-              <a href="index.html">
-                <span class="font-black text-xl flex items-center">
-                  <span class="logo3d-wrap"><img class="mr-2 logo3d" src="static/logos/logo_no_text.svg" width="44" alt="albertmra logo"></span>
-                  <span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">l</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">b</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">e</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">t</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">m</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">r</span><span class="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100">a</span>
-                </span>
-              </a>
-            </li>
-            <div class="flex items-center" style="gap:14px;z-index:102">
-              <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Theme: Deadpool Red — activate Original Blue" title="Switch theme"><span class="tt-face tt-face-red" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 24C14 12 50 12 56 24C57 26 57 38 56 40C50 52 14 52 8 40C7 38 7 26 8 24Z" fill="#e50914"/><circle cx="24" cy="34" r="5" fill="#0a0a0a"/><circle cx="40" cy="34" r="5" fill="#0a0a0a"/><path d="M14 22C22 15 42 15 50 22" stroke="#c29b38" stroke-width="4" stroke-linecap="round"/></svg></span><span class="tt-face tt-face-blue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 6L56 14V32C56 47 45 55 32 60C19 55 8 47 8 32V14Z" fill="#00c7ff"/><circle cx="32" cy="33" r="7" fill="#000a1f"/></svg></span><span class="tt-dots" aria-hidden="true"><span class="tt-dot tt-dot-red"></span><span class="tt-dot tt-dot-blue"></span></span><span class="tt-label">Red</span></button>
-              <button class="burger-btn" aria-label="Toggle menu" aria-expanded="false" type="button">
-              <svg class="burger-icon icon-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h18"/><path d="M3 12h18"/><path d="M3 17h18"/></svg>
-              <svg class="burger-icon icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-            </button>
-            </div>
-          </div>
-        </nav>
-        <div class="mobile-menu" id="mobileMenu">
-          <a href="index.html">Home</a>
-          <a href="projects.html">Projects</a>
-          <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="mailto:maratbeknyazov@gmail.com">Email</a>
-        </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__links" aria-label="Mobile">
+      <a class="mobile-menu__link" href="index.html"><span data-i18n="nav.home">Home</span><span>01</span></a>
+      <a class="mobile-menu__link" href="index.html#about"><span data-i18n="nav.about">About</span><span>02</span></a>
+      <a class="mobile-menu__link" href="projects.html"><span data-i18n="nav.projects">Projects</span><span>03</span></a>
+      <a class="mobile-menu__link" href="index.html#skills"><span data-i18n="nav.skills">Skills</span><span>04</span></a>
+      <a class="mobile-menu__link" href="index.html#journey"><span data-i18n="nav.journey">Journey</span><span>05</span></a>
+      <a class="mobile-menu__link" href="index.html#contact"><span data-i18n="nav.contact">Contact</span><span>06</span></a>
+    </nav>
+    <div class="mobile-menu__foot">
+      <div class="mobile-menu__socials">
+        <a class="social" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </a>
+        <a class="social" href="https://t.me/albertmra" target="_blank" rel="noreferrer" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.458 0 .66-.21.916-.457l2.199-2.138 4.574 3.379c.843.465 1.448.226 1.658-.782l2.998-14.128c.308-1.233-.473-1.794-1.549-1.313z"/></svg>
+        </a>
+        <a class="social" href="https://www.linkedin.com/in/albert-muratbaev-a39ba4373/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="social" href="https://www.instagram.com/albertmra_/" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+        <a class="social" href="mailto:maratbeknyazov@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        </a>
       </div>
-      <script>
-        (function () {
-          var btn = document.querySelector('.burger-btn');
-          var menu = document.getElementById('mobileMenu');
-          if (!btn || !menu) return;
-          btn.addEventListener('click', function () {
-            var open = menu.classList.toggle('open');
-            btn.classList.toggle('open', open);
-            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-            document.body.style.overflow = open ? 'hidden' : '';
-          });
-          menu.addEventListener('click', function (e) {
-            if (e.target.closest('a')) {
-              menu.classList.remove('open');
-              btn.classList.remove('open');
-              btn.setAttribute('aria-expanded', 'false');
-              document.body.style.overflow = '';
-            }
-          });
-        })();
-
-        /* Theme switcher: toggles html.theme-red, persists to localStorage["theme"],
-           and syncs all toggle buttons (desktop + mobile), the favicon and the
-           meta theme-color. The .theme-anim class enables the cross-fade
-           transitions only while switching. */
-        (function () {
-          var btns = document.querySelectorAll('.theme-toggle');
-          function apply(theme) {
-            var isRed = theme !== 'blue';
-            document.documentElement.classList.toggle('theme-red', isRed);
-            var fav = document.getElementById('themeFavicon');
-            if (fav) fav.href = 'static/favicon/favicon-' + (isRed ? 'red' : 'blue') + '.svg';
-            var meta = document.getElementById('metaThemeColor');
-            if (meta) meta.setAttribute('content', isRed ? '#0a0a0a' : '#000a1f');
-            btns.forEach(function (btn) {
-              btn.classList.toggle('is-red', isRed);
-              btn.classList.toggle('is-blue', !isRed);
-              btn.setAttribute('aria-checked', isRed ? 'true' : 'false');
-              btn.setAttribute('aria-label', isRed ? 'Theme: Deadpool Red — activate Original Blue' : 'Theme: Original Blue — activate Deadpool Red');
-              var label = btn.querySelector('.tt-label');
-              if (label) label.textContent = 'Theme';
-            });
-          }
-          apply(document.documentElement.classList.contains('theme-red') ? 'red' : 'blue');
-          /* First-visit hint: make the switch discoverable (same as index.html). */
-          var hinted = false;
-          try { hinted = localStorage.getItem('themeHintShown') === '1'; } catch (e) {}
-          if (!hinted) {
-            window.setTimeout(function () {
-              btns.forEach(function (btn) { btn.classList.add('tt-hint'); });
-            }, 1600);
-          }
-          btns.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-              var next = document.documentElement.classList.contains('theme-red') ? 'blue' : 'red';
-              document.documentElement.classList.add('theme-anim');
-              apply(next);
-              btns.forEach(function (b) { b.classList.remove('tt-hint'); });
-              try { localStorage.setItem('theme', next); localStorage.setItem('themeHintShown', '1'); } catch (e) {}
-              window.setTimeout(function () { document.documentElement.classList.remove('theme-anim'); }, 600);
-              /* Prototype-style biomass flash on switch (keyframes in brand.css). */
-              var hr = document.documentElement;
-              hr.classList.add('theme-flash');
-              window.setTimeout(function () { hr.classList.remove('theme-flash'); }, 750);
-            });
-          });
-        })();
-
-        /* 3D tilt for project cards: desktop pointers only. The card leans
-           toward the cursor (max 7deg) and springs back on leave. */
-        (function () {
-          function initTilt() {
-          var cards = document.querySelectorAll('.card-live');
-          cards.forEach(function (card) {
-            card.classList.add('tilt3d', 'is-idle');
-            card.addEventListener('pointermove', function (e) {
-              var r = card.getBoundingClientRect();
-              var rx = ((e.clientY - r.top) / r.height - 0.5) * -10;
-              var ry = ((e.clientX - r.left) / r.width - 0.5) * 10;
-              card.classList.remove('is-idle');
-              card.style.transform = 'perspective(800px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
-            });
-            card.addEventListener('pointerleave', function () {
-              card.classList.add('is-idle');
-              card.style.transform = '';
-            });
-          });
-          }
-          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTilt);
-          else initTilt();
-        })();
-      </script>
-
-      <div class="py-12 sm:py-20 w-full text-center relative">
-        <h1 class="text-4xl sm:text-6xl inline-block w-auto mx-auto mb-8 relative">Projects<img class="sqD w-10 -top-8 -right-8 absolute" src="static/doodles/hero/code.svg" alt=""></h1>
-        <p class="text-fun-gray text-xl sm:text-2xl max-w-3xl m-auto">I build REST APIs, cross-platform mobile apps, realtime systems, and geospatial features with Django, FastAPI, React Native, and Flutter. Here are my featured projects — verified locally with automated tests.</p>
-      </div>
-
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-3 items-start">
-
-        <div class="max-w-sm mx-auto flex flex-col projects-center md:projects-start md:justify-center">
-          <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="card-live w-full relative rounded-xl border-fun-gray border p-2 transition hover:-translate-y-2 hover:opacity-75 hover:border-fun-pink will-change-projectCard">
-            <img class="w-full rounded-md" src="static/projects/real-estate-marketplace.svg" alt="Real Estate Marketplace MVP">
-          </a>
-          <div class="w-full mt-5">
-            <div class="flex projects-center justify-between">
-              <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><h3 class="text-lg font-bold">Real Estate Marketplace MVP</h3></a>
-              <div class="space-x-2">
-                <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><img alt="Github Icon" loading="lazy" width="16" height="16" src="static/icons/github.svg"></a>
-              </div>
-            </div>
-            <p class="text-fun-gray text-left text-sm">Production-like marketplace with a Django/PostGIS backend and an Expo React Native client: versioned /api/v1 contract, phone/OTP auth with JWT rotation, IDOR/BOLA protection, bounding-box and radius search, GiST indexes, and presigned S3/MinIO uploads. Verified with Docker, Android API 36, 153 backend tests, and 11 mobile unit tests.</p>
-            <ul class="flex flex-wrap items-center mt-2 -ml-2 list-none">
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">Django</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">DRF</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">PostGIS</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">Expo</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">JWT</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">MinIO</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">pytest</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">Docker</div></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="max-w-sm mx-auto flex flex-col projects-center md:projects-start md:justify-center">
-          <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="card-live w-full relative rounded-xl border-fun-gray border p-2 transition hover:-translate-y-2 hover:opacity-75 hover:border-fun-pink will-change-projectCard">
-            <img class="w-full rounded-md" src="static/projects/last-mile-delivery.svg" alt="Last-mile Delivery Platform">
-          </a>
-          <div class="w-full mt-5">
-            <div class="flex projects-center justify-between">
-              <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><h3 class="text-lg font-bold">Last-mile Delivery Platform</h3></a>
-              <div class="space-x-2">
-                <a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer"><img alt="Github Icon" loading="lazy" width="16" height="16" src="static/icons/github.svg"></a>
-              </div>
-            </div>
-            <p class="text-fun-gray text-left text-sm">Full-stack delivery workflow with Flutter apps, a FastAPI backend, and a React dispatcher dashboard: role-aware client, courier, dispatcher, and admin flows, an order state machine with row locking, authorized WebSocket GPS tracking with Redis Pub/Sub, server-side ETA with fallback, and PostGIS queries.</p>
-            <ul class="flex flex-wrap items-center mt-2 -ml-2 list-none">
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">FastAPI</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">Flutter</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">BLoC</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">React</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">WebSocket</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">Redis</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">PostGIS</div></li>
-              <li><div class="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2">Docker</div></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="max-w-sm mx-auto flex flex-col projects-center md:projects-start md:justify-center">
-          <a href="https://github.com/maratbeknyazov/?tab=repositories" target="_blank" rel="noreferrer" class="card-live w-full relative rounded-xl border-fun-gray border p-2 transition hover:-translate-y-2 hover:opacity-75 hover:border-fun-pink will-change-projectCard flex items-center justify-center" style="min-height:180px">
-            <span class="text-fun-pink text-4xl font-bold">⟩⟩</span>
-          </a>
-          <div class="w-full mt-5">
-            <div class="flex projects-center justify-between">
-              <a href="https://github.com/maratbeknyazov/?tab=repositories" target="_blank" rel="noreferrer"><h3 class="text-lg font-bold">More on GitHub</h3></a>
-              <div class="space-x-2">
-                <a href="https://github.com/maratbeknyazov/?tab=repositories" target="_blank" rel="noreferrer"><img alt="Github Icon" loading="lazy" width="16" height="16" src="static/icons/github.svg"></a>
-              </div>
-            </div>
-            <p class="text-fun-gray text-left text-sm">Explore the full collection of repositories — tooling, experiments, and production-like systems.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <p class="py-20 text-sm italic text-fun-gray">Hey, hey, hey... I&#x27;ve got even more on <a class="text-fun-pink underline" href="https://github.com/maratbeknyazov/?tab=repositories" target="_blank" rel="noreferrer">my GitHub</a>!</p>
-    </main>
-
-    <!-- Footer -->
-    <footer class="flex flex-col w-screen px-5 py-10 border-t border-fun-pink-darker z-5 bg-bg">
-      <div class="w-full max-w-4xl m-auto grid grid-cols-2 sm:grid-cols-2 gap-8 justify-between items-start">
-        <div class="text-left mb-5 sm:mb-0">
-          <h4 class="uppercase text-fun-gray text-sm font-bold mb-6">Pages</h4>
-          <div class="grid gap-4">
-            <div><a href="index.html" class="hover:text-fun-pink transition-colors duration-200">Home</a></div>
-            <div><a href="projects.html" class="hover:text-fun-pink transition-colors duration-200">Projects</a></div>
-          </div>
-        </div>
-        <div class="text-left mb-5 sm:mb-0">
-          <h4 class="uppercase text-fun-gray text-sm font-bold mb-6">Social</h4>
-          <div class="grid gap-4">
-            <div><a href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" class="items-center flex hover:text-fun-pink transition-colors duration-200"><span class="pr-2 -mb-1"><img alt="GitHub" loading="lazy" width="20" height="20" src="static/icons/github-f.svg"></span>GitHub</a></div>
-            <div><a href="https://www.instagram.com/albertmra_/" target="_blank" rel="noreferrer" class="items-center flex hover:text-fun-pink transition-colors duration-200"><span class="pr-2 -mb-1"><img alt="Instagram" loading="lazy" width="20" height="20" src="static/icons/instagram-grey-outline-22754.svg"></span>Instagram</a></div>
-            <div><a href="https://t.me/albertmra" target="_blank" rel="noreferrer" class="items-center flex hover:text-fun-pink transition-colors duration-200"><span class="pr-2 -mb-1"><img alt="Telegram" loading="lazy" width="20" height="20" src="static/icons/telegram-f.svg"></span>Telegram</a></div>
-            <div><a href="mailto:maratbeknyazov@gmail.com" class="items-center flex hover:text-fun-pink transition-colors duration-200"><span class="pr-2 -mb-1"><img alt="Email" loading="lazy" width="20" height="20" src="static/icons/mail-f.svg"></span>Email</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="max-w-4xl w-full m-auto mt-8 pt-8 sm:mt-4 sm:pt-4 text-center text-fun-gray border-t border-fun-pink-dark">
-        <div class="flex flex-col items-center justify-center space-y-4">
-          <div class="inline-flex items-center text-xs font-bold tracking-widest">Built with<div class="space-x-2 inline-flex items-center ml-3"><span class="hover:scale-110 transition-transform duration-200"><img src="gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" width="40" class="invert" title="NextJS" alt="NextJS"></span><span class="hover:scale-110 transition-transform duration-200"><img src="wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" width="26" title="TailwindCSS" alt="TailwindCSS"></span></div></div>
-          <div class="text-xs">© 2026 <a href="mailto:maratbeknyazov@gmail.com" class="text-fun-gray-light font-medium hover:text-fun-pink transition-colors duration-200">Albert Muratbaev</a>. All rights reserved.</div>
-        </div>
-      </div>
-    </footer>
+      <p class="mobile-menu__note">Tashkent, Uzbekistan · maratbeknyazov@gmail.com</p>
+    </div>
   </div>
-  <script>
-    /* Prototype-style ambient FX for the Projects page: scroll-reveal,
-       consume-glow on cards, tendril hives. Skipped under reduced motion. */
-    (function () {
-      var d = document, root = d.documentElement;
-      var reduced = false;
-      try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-      if (reduced) return;
 
-      var TENDRILS = '<svg class="biohive" viewBox="0 0 220 170" fill="none" xmlns="http://www.w3.org/2000/svg"><g class="t t1"><path d="M0 170C6 118 18 96 10 58" stroke="var(--tm-accent)" stroke-width="3" stroke-linecap="round"/><path d="M10 58C14 40 10 30 16 14" stroke="var(--tm-accent)" stroke-width="2" stroke-linecap="round" opacity=".7"/><circle cx="16" cy="11" r="3.5" fill="var(--tm-accent)"/></g><g class="t t2"><path d="M0 170C16 132 26 118 22 78" stroke="var(--tm-accent)" stroke-width="2.5" stroke-linecap="round"/><path d="M22 78C28 60 22 52 30 36" stroke="var(--tm-accent)" stroke-width="2" stroke-linecap="round" opacity=".7"/><circle cx="31" cy="32" r="3" fill="var(--tm-accent)"/></g><g class="t t3"><path d="M0 170C26 146 34 136 38 104" stroke="var(--tm-accent)" stroke-width="2" stroke-linecap="round"/><circle cx="39" cy="100" r="2.5" fill="var(--tm-accent)"/></g></svg>';
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap page-hero__inner">
+        <span class="eyebrow" data-i18n="pp.eyebrow">Portfolio</span>
+        <h1 class="display page-hero__title">
+          <span class="page-hero__orb" aria-hidden="true"></span>
+          <span data-i18n="pp.title">Projects</span>
+        </h1>
+        <p class="lead" data-i18n="pp.lead">I build REST APIs, cross-platform mobile apps, realtime systems, and geospatial features with Django, FastAPI, React Native, and Flutter. Here are my featured projects — verified locally with automated tests.</p>
+      </div>
+    </section>
 
-      function hive(corner) {
-        var s = d.createElement('div');
-        s.className = 'biohive br-' + corner;
-        s.setAttribute('aria-hidden', 'true');
-        s.innerHTML = TENDRILS;
-        return s;
-      }
+    <section class="section section--tight">
+      <div class="wrap">
+        <!-- Project 01 -->
+        <article class="project-detail" data-reveal>
+          <div class="project-detail__media">
+            <img src="static/projects/real-estate-marketplace.svg" width="1200" height="750" alt="Real Estate Marketplace MVP interface preview">
+          </div>
+          <div>
+            <div class="project-detail__index">01 · <span data-i18n="projects.p1kind">Marketplace · Geospatial</span></div>
+            <h2 class="project-detail__title">Real Estate Marketplace MVP</h2>
+            <p class="project-detail__text" data-i18n="projects.p1text">Production-like marketplace with a Django/PostGIS backend and an Expo React Native client: OTP auth with JWT rotation, IDOR/BOLA protection, bounding-box search, and presigned uploads. Verified by 153 backend and 11 mobile tests.</p>
+            <ul class="bullets">
+              <li data-i18n="pp.b1">Versioned /api/v1 contract, phone/OTP and password authentication, JWT rotation, blacklist, and secure token refresh</li>
+              <li data-i18n="pp.b2">Property and listing domain with constraints, ownership rules, IDOR/BOLA protection, favorites, inquiries, and media</li>
+              <li data-i18n="pp.b3">Bounding-box and radius search, distance ordering, GiST indexes, and presigned S3/MinIO uploads</li>
+              <li data-i18n="pp.b4">Mobile discovery, filters, pagination, localization, resilient loading/error states, and Sentry foundations</li>
+              <li data-i18n="pp.b5">Verified with Docker, Android API 36, 153 passing backend tests, and 11 mobile unit tests</li>
+            </ul>
+            <ul class="tags">
+              <li class="tag">Django</li>
+              <li class="tag">DRF</li>
+              <li class="tag">PostGIS</li>
+              <li class="tag">Expo</li>
+              <li class="tag">JWT</li>
+              <li class="tag">MinIO</li>
+              <li class="tag">pytest</li>
+              <li class="tag">Docker</li>
+            </ul>
+            <div class="project-detail__foot">
+              <a class="btn btn--primary" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                <span data-i18n="projects.open">View on GitHub</span>
+              </a>
+            </div>
+          </div>
+        </article>
 
-      function place(el, corner) {
-        if (!el) return;
-        el.style.position = 'relative';
-        el.appendChild(hive(corner));
-      }
+        <!-- Project 02 -->
+        <article class="project-detail" data-reveal>
+          <div class="project-detail__media">
+            <img src="static/projects/last-mile-delivery.svg" width="1200" height="750" alt="Last-mile Delivery Platform interface preview">
+          </div>
+          <div>
+            <div class="project-detail__index">02 · <span data-i18n="projects.p2kind">Logistics · Realtime</span></div>
+            <h2 class="project-detail__title">Last-mile Delivery Platform</h2>
+            <p class="project-detail__text" data-i18n="projects.p2text">Full-stack delivery workflow with Flutter apps, a FastAPI backend, and a React dispatcher dashboard: order state machine, authorized WebSocket GPS tracking, Redis Pub/Sub, server-side ETA, and PostGIS queries.</p>
+            <ul class="bullets">
+              <li data-i18n="pp.c1">Role-aware client, courier, dispatcher, and admin flows with resource-level authorization</li>
+              <li data-i18n="pp.c2">Order state machine, row locking, audit trail, safe cancellation, and courier assignment</li>
+              <li data-i18n="pp.c3">Authorized WebSocket GPS tracking with validation, throttling, bounded reconnect, and Redis Pub/Sub</li>
+              <li data-i18n="pp.c4">Server-side ETA and route preview through an adapter with timeout, response validation, and fallback</li>
+              <li data-i18n="pp.c5">PostGIS queries, paginated screens, deduplication, Docker Compose, and automated checks across all clients</li>
+            </ul>
+            <ul class="tags">
+              <li class="tag">FastAPI</li>
+              <li class="tag">Flutter</li>
+              <li class="tag">BLoC</li>
+              <li class="tag">React</li>
+              <li class="tag">WebSocket</li>
+              <li class="tag">Redis</li>
+              <li class="tag">PostGIS</li>
+              <li class="tag">Docker</li>
+            </ul>
+            <div class="project-detail__foot">
+              <a class="btn btn--primary" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                <span data-i18n="projects.open">View on GitHub</span>
+              </a>
+            </div>
+          </div>
+        </article>
 
-      function init() {
-        root.classList.add('biofx');
+        <p class="note" data-reveal data-i18n="pp.note">Every project is documented and tested. More experiments and tooling live on GitHub.</p>
+      </div>
+    </section>
 
-        var sections = [];
-        var hero = d.querySelector('.py-12.sm\\:py-20') || d.querySelector('main > div.relative');
-        var grid = d.querySelector('main .grid');
-        if (hero) sections.push(hero);
-        if (grid) sections.push(grid);
-        sections.forEach(function (s) { s.classList.add('bio-reveal'); });
+    <section class="section">
+      <div class="wrap">
+        <div class="contact__panel panel" data-reveal>
+          <div class="contact__grid">
+            <div>
+              <span class="eyebrow" data-i18n="pp.eyebrow">Portfolio</span>
+              <h2 class="h2 contact__title" style="margin-top:16px" data-i18n="pp.ctaTitle">Want to see the code?</h2>
+              <p class="lead contact__lead" data-i18n="pp.ctaLead">Browse all repositories, tooling, and experiments on GitHub.</p>
+              <div class="contact__actions">
+                <a class="btn btn--primary" href="https://github.com/maratbeknyazov/?tab=repositories" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                  <span data-i18n="pp.cta">Open GitHub</span>
+                </a>
+                <a class="btn btn--ghost" href="index.html">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+                  <span data-i18n="pp.back">Back to home</span>
+                </a>
+              </div>
+            </div>
+            <div class="contact__cards">
+              <a class="contact-card" href="mailto:maratbeknyazov@gmail.com">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.emailLabel">Email</span>
+                  <span class="contact-card__handle">maratbeknyazov@gmail.com</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+              <a class="contact-card" href="https://t.me/albertmra" target="_blank" rel="noreferrer">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.458 0 .66-.21.916-.457l2.199-2.138 4.574 3.379c.843.465 1.448.226 1.658-.782l2.998-14.128c.308-1.233-.473-1.794-1.549-1.313z"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.tg">Telegram</span>
+                  <span class="contact-card__handle">@albertmra</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+              <a class="contact-card" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.gh">GitHub</span>
+                  <span class="contact-card__handle">@maratbeknyazov</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+              <a class="contact-card" href="https://www.linkedin.com/in/albert-muratbaev-a39ba4373/" target="_blank" rel="noreferrer">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.li">LinkedIn</span>
+                  <span class="contact-card__handle">Albert Muratbaev</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+              <a class="contact-card" href="https://www.instagram.com/albertmra_/" target="_blank" rel="noreferrer">
+                <span class="contact-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></span>
+                <span class="contact-card__meta">
+                  <span class="contact-card__label" data-i18n="contact.ig">Instagram</span>
+                  <span class="contact-card__handle">@albertmra_</span>
+                </span>
+                <span class="contact-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (en) {
-              if (en.isIntersecting) { en.target.classList.add('bio-in'); io.unobserve(en.target); }
-            });
-          }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-          sections.forEach(function (s) { io.observe(s); });
-        } else {
-          sections.forEach(function (s) { s.classList.add('bio-in'); });
-        }
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand" href="index.html" aria-label="albertmra — home">
+            <span class="brand__mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <ellipse cx="16" cy="17" rx="13" ry="5.5" stroke="#67e8f9" stroke-width="1.1" opacity=".55" transform="rotate(-24 16 17)"/>
+                <circle cx="16" cy="16" r="6.2" fill="#22d3ee" opacity=".16"/>
+                <circle cx="16" cy="16" r="3.4" fill="#22d3ee"/>
+                <circle cx="16" cy="16" r="5.7" stroke="#8b5cf6" stroke-width="1" opacity=".85"/>
+                <circle cx="26.4" cy="10.6" r="1.5" fill="#f472b6"/>
+              </svg>
+            </span>
+            <span class="brand__name" aria-hidden="true"><span>a</span><span>l</span><span>b</span><span>e</span><span>r</span><span>t</span><span>m</span><span>r</span><span>a</span></span>
+          </a>
+          <p class="footer__tagline" data-i18n="footer.tagline">Full-stack &amp; mobile developer building clear, reliable systems for the web and mobile.</p>
+          <div class="footer__socials">
+            <a class="social" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            </a>
+            <a class="social" href="https://t.me/albertmra" target="_blank" rel="noreferrer" aria-label="Telegram">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.458 0 .66-.21.916-.457l2.199-2.138 4.574 3.379c.843.465 1.448.226 1.658-.782l2.998-14.128c.308-1.233-.473-1.794-1.549-1.313z"/></svg>
+            </a>
+            <a class="social" href="https://www.linkedin.com/in/albert-muratbaev-a39ba4373/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a class="social" href="https://www.instagram.com/albertmra_/" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a class="social" href="mailto:maratbeknyazov@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+            </a>
+          </div>
+        </div>
 
-        place(hero, 'tr');
-        place(hero, 'bl');
-        place(grid, 'tl');
+        <div>
+          <h4 class="footer__col-title" data-i18n="footer.pages">Pages</h4>
+          <div class="footer__links">
+            <a class="footer__link" href="index.html" data-i18n="nav.home">Home</a>
+            <a class="footer__link" href="index.html#about" data-i18n="nav.about">About</a>
+            <a class="footer__link" href="index.html#skills" data-i18n="nav.skills">Skills</a>
+            <a class="footer__link" href="projects.html" data-i18n="nav.projects">Projects</a>
+            <a class="footer__link" href="index.html#contact" data-i18n="nav.contact">Contact</a>
+          </div>
+        </div>
 
-        d.querySelectorAll('.card-live').forEach(function (card) {
-          card.addEventListener('pointermove', function (e) {
-            var r = card.getBoundingClientRect();
-            card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-            card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-          });
-        });
+        <div>
+          <h4 class="footer__col-title" data-i18n="footer.connect">Connect</h4>
+          <div class="footer__links">
+            <a class="footer__link" href="mailto:maratbeknyazov@gmail.com">maratbeknyazov@gmail.com</a>
+            <a class="footer__link" href="https://t.me/albertmra" target="_blank" rel="noreferrer">Telegram</a>
+            <a class="footer__link" href="https://github.com/maratbeknyazov/" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="footer__link" href="https://www.linkedin.com/in/albert-muratbaev-a39ba4373/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
 
-        window.setTimeout(function () {
-          try { if (localStorage.getItem('themeHintShown') !== '1') btnHintAdd(); } catch (e) {}
-        }, 2500);
-        function btnHintAdd() {
-          d.querySelectorAll('.theme-toggle').forEach(function (b) { b.classList.add('tt-hint'); });
-        }
-        d.addEventListener('click', function (e) {
-          if (e.target.closest && e.target.closest('.theme-toggle')) {
-            d.querySelectorAll('.theme-toggle').forEach(function (b) { b.classList.remove('tt-hint'); });
-          }
-        });
-      }
+      <div class="footer__bottom">
+        <span data-i18n="footer.built">Designed in orbit</span>
+        <span data-i18n="footer.rights">© 2026 Albert Muratbaev. All rights reserved.</span>
+        <a class="to-top" href="#main">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+          <span data-i18n="footer.toTop">Back to top</span>
+        </a>
+      </div>
 
-      if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init);
-      else init();
-    })();
-  </script>
+      <span class="footer__word" aria-hidden="true">albertmra</span>
+    </div>
+  </footer>
+
+  <script src="static/space.js"></script>
 </body>
 </html>
