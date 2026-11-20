@@ -137,3 +137,5 @@ Full-stack delivery workflow with Flutter apps, a FastAPI backend, and a React d
 ## 📬 Let's connect
 
 [Email](mailto:maratbekniyazov@gmail.com) · [LinkedIn](https://www.linkedin.com/in/albert-muratbaev-a39ba4373/) · [Telegram](https://t.me/albertmra) · [CV](./CV.pdf)
+
+

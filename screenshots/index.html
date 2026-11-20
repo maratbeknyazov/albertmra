@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Портфолио — четыре платформы</title>
+  <meta name="description" content="Слайдер со скриншотами четырёх учебных платформ: логистика США, автошкола, IT-интервью и английский A1–C2." />
+  <style>
+    :root {
+      --bg: #06070c;
+      --panel: #0c0e17;
+      --line: rgba(255, 255, 255, 0.09);
+      --text: #eef1f8;
+      --muted: #98a0b3;
+      --accent: #22d3ee;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; }
+
+    body {
+      min-height: 100vh;
+      padding: clamp(24px, 4vw, 64px) clamp(16px, 4vw, 48px) 48px;
+      background:
+        radial-gradient(1100px 620px at 12% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+        radial-gradient(900px 620px at 100% 0%, rgba(124, 58, 237, 0.12), transparent 65%),
+        var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      transition: background 600ms ease;
+    }
+
+    .wrap { max-width: 1240px; margin: 0 auto; }
+
+    /* ---------------------------------------------------------------- intro */
+
+    .intro { display: grid; gap: 16px; margin-bottom: clamp(24px, 3vw, 40px); }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font: 500 11px/1 ui-monospace, "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .label::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    .intro h1 {
+      margin: 0;
+      font-size: clamp(30px, 4.2vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 650;
+      max-width: 20ch;
+    }
+
+    .intro h1 em { font-style: normal; color: var(--accent); }
+
+    .intro p {
+      margin: 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: clamp(14px, 1.3vw, 16px);
+      line-height: 1.65;
+    }
+
+    /* --------------------------------------------------------------- slider */
+
+    .slider {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+      gap: clamp(16px, 2vw, 26px);
+      align-items: stretch;
+    }
+
+    .stage {
+      position: relative;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #05060b;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      box-shadow:
+        0 40px 120px -60px color-mix(in srgb, var(--accent) 55%, transparent),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      touch-action: pan-y;
+    }
+
+    .stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 62%, rgba(4, 5, 9, 0.55));
+    }
+
+    .shot {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      opacity: 0;
+      transform: scale(1.015);
+      transition: opacity 520ms ease, transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .shot.is-active { opacity: 1; transform: scale(1); }
+
+    .arrow {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      translate: 0 -50%;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(8, 10, 16, 0.55);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      cursor: pointer;
+      transition: background 180ms ease, border-color 180ms ease, scale 180ms ease;
+    }
+
+    .arrow:hover { background: color-mix(in srgb, var(--accent) 30%, rgba(8, 10, 16, 0.7)); border-color: var(--accent); }
+    .arrow:active { scale: 0.94; }
+    .arrow.prev { left: 14px; }
+    .arrow.next { right: 14px; }
+    .arrow svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .counter {
+      position: absolute;
+      z-index: 3;
+      right: 16px;
+      top: 16px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(6, 8, 13, 0.6);
+      backdrop-filter: blur(10px);
+      font: 500 11px/1 ui-monospace, "JetBrains Mono", monospace;
+      letter-spacing: 0.1em;
+      color: #dbe3f4;
+    }
+
+    .counter b { color: var(--accent); font-weight: 600; }
+
+    /* ----------------------------------------------------------------- info */
+
+    .info {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: clamp(20px, 2.2vw, 30px);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
+        var(--panel);
+      overflow: hidden;
+    }
+
+    .info::before {
+      content: "";
+      position: absolute;
+      inset: -1px -1px auto;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent 75%);
+      opacity: 0.9;
+    }
+
+    .screen-tag {
+      align-self: flex-start;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      color: color-mix(in srgb, var(--accent) 80%, #fff);
+      font: 500 10.5px/1 ui-monospace, "JetBrains Mono", monospace;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .info h2 {
+      margin: 0;
+      font-size: clamp(24px, 2.6vw, 34px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 650;
+    }
+
+    .info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: #c7cee0;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .info-bottom {
+      margin-top: auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .open {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 12px;
+      border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 550;
+      text-decoration: none;
+      transition: background 180ms ease, border-color 180ms ease;
+    }
+
+    .open[hidden] { display: none; }
+    .open:hover { background: color-mix(in srgb, var(--accent) 26%, transparent); border-color: var(--accent); }
+    .open svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .bar { display: grid; gap: 8px; }
+
+    .progress {
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      overflow: hidden;
+    }
+
+    .progress i {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transform-origin: left center;
+      transform: scaleX(0);
+      opacity: 0.85;
+    }
+
+    .progress.is-running i { animation: fill var(--duration, 8000ms) linear forwards; }
+
+    @keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .play {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: #cfd6e6;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      transition: border-color 180ms ease, color 180ms ease;
+    }
+
+    .play:hover { border-color: var(--accent); color: #fff; }
+    .play svg { width: 12px; height: 12px; fill: currentColor; stroke: none; }
+
+    /* ---------------------------------------------------------------- thumbs */
+
+    .thumbs {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: clamp(14px, 1.6vw, 20px);
+    }
+
+    .thumb {
+      position: relative;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #0a0c14;
+      aspect-ratio: 1440 / 810;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.55;
+      transition: opacity 200ms ease, border-color 200ms ease, translate 200ms ease;
+    }
+
+    .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+    .thumb:hover { opacity: 0.9; translate: 0 -2px; }
+
+    .thumb.is-active {
+      opacity: 1;
+      border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent), 0 14px 28px -18px color-mix(in srgb, var(--accent) 80%, transparent);
+    }
+
+    .thumb span {
+      position: absolute;
+      inset: auto 6px 5px;
+      font: 500 9px/1 ui-monospace, "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #eef2fb;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    footer {
+      margin-top: clamp(28px, 3vw, 44px);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+
+    footer b { color: #dbe2f2; font-weight: 550; }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    @media (max-width: 900px) {
+      body { padding-top: 28px; }
+      .slider { grid-template-columns: minmax(0, 1fr); }
+      .stage { order: -1; }
+      .thumbs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .info p { font-size: 14px; }
+    }
+
+    @media (max-width: 520px) {
+      .thumbs { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+      .arrow { width: 38px; height: 38px; }
+      .info { padding: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="intro">
+      <span class="label">Портфолио · 2026</span>
+      <h1>Четыре платформы. <em>Один способ учить.</em></h1>
+      <p>
+        Учебные продукты с data-driven архитектурой, 3D-сценами на Three.js, анимациями GSAP
+        и прогрессом, который считается по закрытым заданиям, а не по просмотренным урокам.
+      </p>
+    </header>
+
+    <section class="slider" id="slider" aria-roledescription="карусель" aria-label="Скриншоты платформ">
+      <div class="stage" id="stage">
+        <img class="shot is-active" id="shotA" src="./logistics-hero.png" alt="Freight Desk — главный экран" />
+        <img class="shot" id="shotB" alt="" aria-hidden="true" />
+
+        <div class="counter"><b id="counter-current">01</b> / <span id="counter-total">08</span></div>
+
+        <button class="arrow prev" id="prev" type="button" aria-label="Предыдущий скриншот">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5" /></svg>
+        </button>
+        <button class="arrow next" id="next" type="button" aria-label="Следующий скриншот">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5" /></svg>
+        </button>
+      </div>
+
+      <aside class="info" id="info" aria-live="polite">
+        <span class="screen-tag" id="screen-tag">Экран 1 / 2</span>
+        <h2 id="slide-title">Freight Desk</h2>
+        <p id="slide-desc"></p>
+        <ul class="tags" id="slide-tags"></ul>
+
+        <div class="info-bottom">
+          <a class="open" id="slide-link" href="#" hidden>
+            <span>Открыть платформу</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M13 6.5 18.5 12 13 17.5" /></svg>
+          </a>
+
+          <div class="bar">
+            <div class="progress" id="progress"><i></i></div>
+            <div class="bar-row">
+              <span id="slide-meta"></span>
+              <button class="play" id="play" type="button" aria-pressed="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true" id="play-icon"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+                <span id="play-label">Пауза</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <nav class="thumbs" id="thumbs" aria-label="Все скриншоты"></nav>
+    </section>
+
+    <footer>
+      <span><b>4 платформы</b> · 8 экранов · 1440 × 900</span>
+      <span>Vanilla JS · Three.js · GSAP · localStorage</span>
+    </footer>
+  </main>
+
+  <script>
+    /* ------------------------------------------------------------------ data */
+
+    const SLIDES = [
+      {
+        project: "Freight Desk",
+        screen: "Hero",
+        tag: "Экран 1 / 2",
+        image: "./logistics-hero.png",
+        alt: "Freight Desk — главный экран с 3D-картой маршрута",
+        desc: "Академия грузоперевозок США: пять департаментов, кейсы с последствиями и 3D-карта активного рейса.",
+        tags: ["Логистика США", "5 департаментов", "Кейсы", "local-first"],
+        meta: "Ванильный JS · Three.js · GSAP",
+        accent: "#22d3ee",
+        url: "",
+      },
+      {
+        project: "Freight Desk",
+        screen: "Калькуляторы",
+        tag: "Экран 2 / 2",
+        image: "./logistics-simulator.png",
+        alt: "Freight Desk — калькуляторы RPM, топлива и ожидания на площадке",
+        desc: "RPM, топливо, оплата водителя и точка безубыточности считаются на лету: видно, где рейс уходит в минус.",
+        tags: ["RPM", "Break-even", "Detention", "HOS"],
+        meta: "Формулы без библиотек",
+        accent: "#22d3ee",
+        url: "",
+      },
+      {
+        project: "Apex Drive",
+        screen: "Hero",
+        tag: "Экран 1 / 2",
+        image: "./driving-hero.png",
+        alt: "Apex Drive — главный экран с 3D-сценой ночной дороги",
+        desc: "Автошкола и тренажёр ПДД: 1351 вопрос в 68 блоках, экзамен 18 из 20 с таймером и разбор каждой ошибки.",
+        tags: ["1351 вопрос", "Экзамен 18/20", "3D-сцена", "RU / UZ"],
+        meta: "Three.js · GSAP · IndexedDB-free",
+        accent: "#d9f99d",
+        url: "",
+      },
+      {
+        project: "Apex Drive",
+        screen: "3D-разбор",
+        tag: "Экран 2 / 2",
+        image: "./driving-vehicle.png",
+        alt: "Apex Drive — exploded-view автомобиля и панель выбранного узла",
+        desc: "Автомобиль в разрезе: деталь выбирается кликом по сцене или в списке, у каждого узла — ресурс, износ и цена ошибки.",
+        tags: ["Exploded view", "6 узлов", "Hotspots"],
+        meta: "Процедурная модель",
+        accent: "#d9f99d",
+        url: "",
+      },
+      {
+        project: "Skill Core",
+        screen: "Hero",
+        tag: "Экран 1 / 2",
+        image: "./it-hero.png",
+        alt: "Skill Core — главный экран с 3D-ядром навыков",
+        desc: "Банк вопросов по реальному стеку: Django/DRF и FastAPI, React Native и Flutter, PostGIS, Redis и архитектура.",
+        tags: ["600 вопросов", "6 треков", "3 грейда", "3D-ядро"],
+        meta: "Three.js · GSAP",
+        accent: "#a5b4fc",
+        url: "",
+      },
+      {
+        project: "Skill Core",
+        screen: "Mock-интервью",
+        tag: "Экран 2 / 2",
+        image: "./it-interview.png",
+        alt: "Skill Core — экран mock-интервью с выбором грейда",
+        desc: "12 вопросов, 20 минут, проходной балл 9. После эталона — честная самооценка и возврат слабых тем.",
+        tags: ["Mock 12 / 20:00", "Эталоны", "Слабые темы"],
+        meta: "Таймер, черновики ответов",
+        accent: "#a5b4fc",
+        url: "",
+      },
+      {
+        project: "Lingua Atlas",
+        screen: "Hero",
+        tag: "Экран 1 / 2",
+        image: "./english-hero.png",
+        alt: "Lingua Atlas — главный экран с лексическим глобусом",
+        desc: "Английский A1–C2: 599 слов IELTS-уровня, четыре модуля на 28 тем и тренировка, где вы сначала вспоминаете слово.",
+        tags: ["599 слов", "CEFR A1–C2", "4 модуля", "Лексический глобус"],
+        meta: "Three.js · GSAP",
+        accent: "#f59e0b",
+        url: "",
+      },
+      {
+        project: "Lingua Atlas",
+        screen: "Словарь",
+        tag: "Экран 2 / 2",
+        image: "./english-vocabulary.png",
+        alt: "Lingua Atlas — словарь с фильтром по CEFR и поиском",
+        desc: "Поиск по слову или переводу, фильтр CEFR, сочетания и примеры. Закрытые слова попадают в прогресс, забытые — в повтор.",
+        tags: ["Поиск", "CEFR-фильтр", "Коллокации", "Повтор"],
+        meta: "599 записей · 6 уровней",
+        accent: "#f59e0b",
+        url: "",
+      },
+    ];
+
+    /* ---------------------------------------------------------------- setup */
+
+    const slider = document.getElementById("slider");
+    const stage = document.getElementById("stage");
+    const shotA = document.getElementById("shotA");
+    const shotB = document.getElementById("shotB");
+    const thumbs = document.getElementById("thumbs");
+    const counterCurrent = document.getElementById("counter-current");
+    const counterTotal = document.getElementById("counter-total");
+    const screenTag = document.getElementById("screen-tag");
+    const slideTitle = document.getElementById("slide-title");
+    const slideDesc = document.getElementById("slide-desc");
+    const slideTags = document.getElementById("slide-tags");
+    const slideLink = document.getElementById("slide-link");
+    const slideMeta = document.getElementById("slide-meta");
+    const progress = document.getElementById("progress");
+    const play = document.getElementById("play");
+    const playLabel = document.getElementById("play-label");
+    const playIcon = document.getElementById("play-icon");
+
+    const DURATION = 8000;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const layers = [shotA, shotB];
+    let activeLayer = 0;
+    let index = 0;
+    let playing = !reducedMotion;
+    let timer = null;
+
+    /* --------------------------------------------------------------- render */
+
+    const pad = (n) => String(n).padStart(2, "0");
+
+    function renderThumbs() {
+      counterTotal.textContent = pad(SLIDES.length);
+      thumbs.innerHTML = SLIDES.map(
+        (slide, i) => `
+        <button class="thumb${i === 0 ? " is-active" : ""}" type="button" data-index="${i}"
+                aria-label="${slide.project} — ${slide.screen}" aria-current="${i === 0 ? "true" : "false"}">
+          <img src="${slide.image}" alt="" loading="lazy" />
+          <span>${slide.project}</span>
+        </button>`
+      ).join("");
+    }
+
+    function renderInfo(slide) {
+      screenTag.textContent = slide.tag;
+      slideTitle.textContent = slide.project;
+      slideDesc.textContent = slide.desc;
+      slideTags.innerHTML = slide.tags.map((tag) => `<li>${tag}</li>`).join("");
+      slideMeta.textContent = slide.meta;
+      counterCurrent.textContent = pad(index + 1);
+
+      if (slide.url) {
+        slideLink.href = slide.url;
+        slideLink.hidden = false;
+        slideLink.target = "_blank";
+        slideLink.rel = "noopener";
+      } else {
+        slideLink.hidden = true;
+        slideLink.removeAttribute("href");
+      }
+
+      thumbs.querySelectorAll(".thumb").forEach((thumb, i) => {
+        const on = i === index;
+        thumb.classList.toggle("is-active", on);
+        thumb.setAttribute("aria-current", on ? "true" : "false");
+      });
+    }
+
+    function renderImage(slide) {
+      const incoming = layers[activeLayer ^ 1];
+      const outgoing = layers[activeLayer];
+
+      incoming.alt = slide.alt;
+      incoming.removeAttribute("aria-hidden");
+      outgoing.setAttribute("aria-hidden", "true");
+
+      const reveal = () => {
+        incoming.classList.add("is-active");
+        outgoing.classList.remove("is-active");
+        activeLayer ^= 1;
+      };
+
+      incoming.onload = reveal;
+      incoming.src = slide.image;
+      if (incoming.complete && incoming.naturalWidth) reveal();
+    }
+
+    function render() {
+      const slide = SLIDES[index];
+      slider.style.setProperty("--accent", slide.accent);
+      document.body.style.setProperty("--accent", slide.accent);
+      renderImage(slide);
+      renderInfo(slide);
+      restartProgress();
+    }
+
+    /* -------------------------------------------------------------- autoplay */
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = null;
+      if (!playing) return;
+      timer = setInterval(() => go(index + 1), DURATION);
+    }
+
+    function restartProgress() {
+      progress.style.setProperty("--duration", DURATION + "ms");
+      progress.classList.remove("is-running");
+      void progress.offsetWidth;
+      if (playing) progress.classList.add("is-running");
+      startTimer();
+    }
+
+    function setPlaying(value) {
+      playing = value;
+      play.setAttribute("aria-pressed", String(value));
+      playLabel.textContent = value ? "Пауза" : "Play";
+      playIcon.innerHTML = value
+        ? '<rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" />'
+        : '<path d="M8 5.5v13l11-6.5z" />';
+      restartProgress();
+    }
+
+    function go(next) {
+      index = (next + SLIDES.length) % SLIDES.length;
+      render();
+    }
+
+    /* --------------------------------------------------------------- events */
+
+    document.getElementById("prev").addEventListener("click", () => go(index - 1));
+    document.getElementById("next").addEventListener("click", () => go(index + 1));
+
+    thumbs.addEventListener("click", (event) => {
+      const thumb = event.target.closest(".thumb");
+      if (!thumb) return;
+      go(Number(thumb.dataset.index));
+    });
+
+    play.addEventListener("click", () => setPlaying(!playing));
+
+    stage.addEventListener("pointerenter", () => {
+      if (playing) progress.classList.remove("is-running");
+      clearInterval(timer);
+      timer = null;
+    });
+
+    stage.addEventListener("pointerleave", () => {
+      if (playing) restartProgress();
+    });
+
+    stage.addEventListener("focusin", () => {
+      progress.classList.remove("is-running");
+      clearInterval(timer);
+      timer = null;
+    });
+
+    stage.addEventListener("focusout", () => {
+      if (playing) restartProgress();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+      if (event.target.closest("input, textarea, select")) return;
+      if (event.key === "ArrowLeft") go(index - 1);
+      if (event.key === "ArrowRight") go(index + 1);
+    });
+
+    let startX = null;
+
+    stage.addEventListener("pointerdown", (event) => {
+      startX = event.clientX;
+    });
+
+    stage.addEventListener("pointerup", (event) => {
+      if (startX === null) return;
+      const delta = event.clientX - startX;
+      startX = null;
+      if (Math.abs(delta) < 45) return;
+      go(index + (delta < 0 ? 1 : -1));
+    });
+
+    stage.addEventListener("pointercancel", () => {
+      startX = null;
+    });
+
+    /* ----------------------------------------------------------------- boot */
+
+    renderThumbs();
+    setPlaying(playing);
+    render();
+  </script>
+</body>
+</html>
